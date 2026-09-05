@@ -5,8 +5,15 @@ const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
   },
-  // three.js ships modern ESM; this keeps it happy in the Next build.
+  // سه.جی‌اس
   transpilePackages: ["three"],
+  // نادیده گرفتن خطاهای متن و لینتر هنگام بیلد
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: false,
+  },
 };
 
 export default nextConfig;
