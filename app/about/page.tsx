@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { aboutContent } from "@/content/about";
-import { siteConfig } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "About",
@@ -11,17 +9,17 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <main className="min-h-screen px-4 sm:px-8 md:px-16 pt-32 pb-24 max-w-5xl mx-auto">
-      {/* شماره بخش */}
+      {/* برچسب بخش */}
       <div className="text-xs font-mono text-lime-400 tracking-widest mb-6">
         01 — ABOUT
       </div>
 
-      {/* تیتر خوش‌فرم و با اندازه استاندارد */}
+      {/* عنوان خوانا و استاندارد */}
       <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight mb-12">
         Game developer, second-semester computer science student, and a beginner at making things move.
       </h1>
 
-      {/* بیوگرافی و پاراگراف‌ها */}
+      {/* بیوگرافی */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 border-t border-white/10 pt-10">
         <div className="text-sm font-mono text-zinc-400 uppercase tracking-wider">
           Background
@@ -36,7 +34,7 @@ export default function AboutPage() {
         </div>
       </div>
 
-      {/* جزئیات و مهارت‌ها */}
+      {/* مهارت‌ها */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 border-t border-white/10 mt-14 pt-10">
         <div className="text-sm font-mono text-zinc-400 uppercase tracking-wider">
           Core Focus
@@ -53,7 +51,7 @@ export default function AboutPage() {
         </div>
       </div>
 
-      {/* دکمه بازگشت یا ارتباط */}
+      {/* دکمه ارتباط */}
       <div className="mt-16 pt-8 border-t border-white/10 flex gap-4">
         <Link
           href="/contact"
