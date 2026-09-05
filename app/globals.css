@@ -26,6 +26,7 @@ html {
   color: var(--color-bone);
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 body {
@@ -127,4 +128,61 @@ html[data-cursor="custom"] textarea {
   html { scroll-behavior: auto; }
   .scan-line, .blink { animation: none; }
   .grain::before { display: none; }
+}
+
+/* ---------- Light Mode Overrides ---------- */
+html.light {
+  --color-ink: #f8f8fa;
+  --color-coal: #ffffff;
+  --color-graphite: #f0f0f3;
+  --color-ash: #e4e4e7;
+  --color-line: #d4d4d8;
+  --color-mist: #71717a;
+  --color-fog: #52525b;
+  --color-bone: #09090b;
+  background: #f8f8fa !important;
+  color: #09090b !important;
+}
+
+html.light body {
+  background: #f8f8fa !important;
+  color: #09090b !important;
+}
+
+html.light header {
+  background: rgba(248, 248, 250, 0.85) !important;
+  border-bottom-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+html.light h1,
+html.light h2,
+html.light h3,
+html.light .text-white {
+  color: #09090b !important;
+}
+
+html.light .text-zinc-100,
+html.light .text-zinc-200 {
+  color: #18181b !important;
+}
+
+html.light .text-zinc-300,
+html.light .text-zinc-400 {
+  color: #52525b !important;
+}
+
+html.light .border-white\/10,
+html.light .border-white\/20,
+html.light .border-white\/5 {
+  border-color: rgba(0, 0, 0, 0.12) !important;
+}
+
+html.light .bg-white\/5,
+html.light .bg-black\/40 {
+  background: rgba(0, 0, 0, 0.04) !important;
+}
+
+html.light .grain::before {
+  opacity: 0.02;
+  mix-blend-mode: multiply;
 }

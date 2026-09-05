@@ -1,86 +1,66 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform, useReducedMotion } from "motion/react";
-import { site } from "@/content/site";
-import { useSiteReady } from "@/hooks/useSiteReady";
-import { EASE } from "@/lib/motion";
-import { HeroCanvas } from "@/components/three/HeroCanvas";
-import { Button } from "@/components/ui/Button";
+import Link from "next/link";
+import dynamic from "next/dynamic";
+import { siteConfig } from "@/content/site";
 
-const letters = site.brand.toUpperCase().split("");
+const HeroCanvas = dynamic(
+  () => import("@/components/three/HeroCanvas").then((mod) => mod.HeroCanvas),
+  { ssr: false }
+);
 
 export function Hero() {
-  const ready = useSiteReady();
-  const reduce = useReducedMotion();
-  const ref = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const wordY = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 160]);
-  const fade = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
-
-  const show = ready ? "show" : "hidden";
-
   return (
-    <section ref={ref} className="relative min-h-[100svh] overflow-hidden" aria-labelledby="hero-title">
-      <HeroCanvas />
+    <section className="relative min-h-[92vh] w-full flex flex-col justify-between overflow-hidden px-4 sm:px-8 md:px-12 pt-28 pb-10">
+      {/* هاله نوری پس‌زمینه برای عمق بیشتر */}
+      <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-lime-400/10 rounded-full blur-[140px]" />
+      
+      {/* بک‌گراند سه‌بعدی */}
+      <div className="absolute inset-0 -z-10 opacity-35">
+        <HeroCanvas />
+      </div>
 
-      <div className="wrap relative flex min-h-[100svh] flex-col justify-between pb-10 pt-28 md:pb-14 md:pt-36">
-        {/* Top meta row — viewport-style labels */}
-        <motion.div
-          className="label-mono flex flex-wrap items-center justify-between gap-y-2"
-          variants={{ hidden: { opacity: 0 }, show: { opacity: 1, transition: { delay: 0.9, duration: 0.8 } } }}
-          initial="hidden"
-          animate={show}
-          style={{ opacity: fade }}
-        >
-          <span>{site.name}</span>
-          <span className="hidden md:inline">{site.facts.studio} · {site.facts.years} yrs · with {site.facts.partner}</span>
-          <span>{site.facts.university} · {site.facts.semester}</span>
-        </motion.div>
+      {/* سطر مشخصات بالای صفحه */}
+      <div className="w-full flex flex-col sm:flex-row justify-between items-start sm:items-center text-[11px] md:text-xs font-mono tracking-wider text-zinc-400 border-b border-white/10 pb-4 gap-2">
+        <span className="font-semibold text-white tracking-widest">{siteConfig.name.toUpperCase()}</span>
+        <span className="text-lime-400 font-mono">EMVP • 2 YRS • WITH MOBIN KOHI</span>
+        <span className="hidden md:inline text-zinc-500">SHAHID BEHESHTI UNIVERSITY</span>
+      </div>
 
-        <div className="mt-auto">
-          <motion.p
-            className="mb-6 max-w-md text-base leading-relaxed text-fog md:text-lg"
-            variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { delay: 0.55, duration: 0.8, ease: EASE } } }}
-            initial="hidden"
-            animate={show}
+      {/* معرفی کوتاه */}
+      <div className="my-6 max-w-xl">
+        <p className="text-base sm:text-lg md:text-xl text-zinc-300 font-normal leading-relaxed">
+          Game developer. Second-semester computer science student. Beginner at making things move — and not shy about it.
+        </p>
+      </div>
+
+      {/* تایتل اصلی با اندازه کامپکت و خوانا برای موبایل و دسکتاپ */}
+      <div className="my-auto py-4 select-none">
+        <h1 className="text-6xl sm:text-8xl md:text-9xl lg:text-[11.5rem] font-black tracking-tighter leading-none text-white drop-shadow-sm flex flex-col">
+          <span>DER</span>
+          <span className="-mt-2 sm:-mt-6 md:-mt-8 text-zinc-100">FIVE</span>
+        </h1>
+      </div>
+
+      {/* دکمه‌های فراخوان پایین */}
+      <div className="w-full flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-white/10">
+        <div className="flex items-center gap-3">
+          <Link
+            href="/projects"
+            className="px-6 py-3 rounded-full bg-lime-400 text-black font-semibold text-xs tracking-wider uppercase transition-all duration-200 hover:bg-lime-300 hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(204,255,0,0.3)]"
           >
-            Game developer. Second-semester computer science student. Beginner at making things move — and not shy about it.
-          </motion.p>
-
-          <motion.h1
-            id="hero-title"
-            aria-label={site.brand}
-            className="font-display text-[clamp(4.25rem,17.5vw,19rem)] font-extrabold leading-[0.82] tracking-[-0.05em] text-bone"
-            style={{ y: wordY }}
+            See the work ↗
+          </Link>
+          <Link
+            href="/about"
+            className="px-6 py-3 rounded-full border border-white/20 bg-black/40 backdrop-blur-md text-white font-semibold text-xs tracking-wider uppercase transition-all duration-200 hover:border-lime-400 hover:text-lime-400 hover:scale-105 active:scale-95"
           >
-            {letters.map((l, i) => (
-              <span key={i} className="inline-block overflow-hidden align-bottom">
-                <motion.span
-                  aria-hidden
-                  className="inline-block"
-                  variants={{ hidden: { y: "105%" }, show: { y: "0%", transition: { delay: 0.1 + i * 0.05, duration: 0.9, ease: EASE } } }}
-                  initial="hidden"
-                  animate={show}
-                >
-                  {l}
-                </motion.span>
-              </span>
-            ))}
-          </motion.h1>
+            Who is Erfan ↗
+          </Link>
+        </div>
 
-          <motion.div
-            className="mt-8 flex flex-wrap items-center gap-4"
-            variants={{ hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0, transition: { delay: 0.8, duration: 0.8, ease: EASE } } }}
-            initial="hidden"
-            animate={show}
-          >
-            <Button href="/projects" magnetic>See the work</Button>
-            <Button href="/about" variant="ghost" magnetic>Who is Erfan</Button>
-            <span aria-hidden className="ml-auto hidden items-center gap-3 font-mono text-[11px] uppercase tracking-[0.18em] text-mist md:flex">
-              scroll <span className="h-8 w-px overflow-hidden bg-line"><motion.span className="block h-full w-full bg-signal" animate={reduce ? undefined : { y: ["-100%", "100%"] }} transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }} /></span>
-            </span>
-          </motion.div>
+        <div className="hidden sm:block text-[11px] font-mono tracking-widest text-zinc-400 animate-pulse">
+          SCROLL TO EXPLORE ↓
         </div>
       </div>
     </section>
