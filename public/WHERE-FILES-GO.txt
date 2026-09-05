@@ -1,0 +1,6 @@
+VIDEOS  → public/videos/    (use .mp4)            then write "/videos/name.mp4"  in content/media.ts or content/projects.ts
+IMAGES  → public/images/    (.jpg / .png / .webp) then write "/images/name.jpg"  in the same files
+POSTERS → public/posters/   (a still frame)       then write "/posters/name.jpg"
+
+The path you type always starts with "/" and does NOT include the word "public".
+Keep filenames lowercase, no spaces:  my-game-trailer.mp4   not   My Game Trailer.mp4

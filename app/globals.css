@@ -1,0 +1,130 @@
+@import "tailwindcss";
+
+/* ---------- Design tokens ---------- */
+@theme {
+  --color-ink: #050505;
+  --color-coal: #0b0b0c;
+  --color-graphite: #141416;
+  --color-ash: #1e1e21;
+  --color-line: #2a2a2f;
+  --color-mist: #8b8b94;
+  --color-fog: #b8b8bf;
+  --color-bone: #ecece8;
+  --color-signal: #c8f542;
+  --color-signal-dim: #86a82a;
+
+  --font-display: var(--font-syne), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, "SF Mono", Menlo, monospace;
+
+  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ---------- Base ---------- */
+html {
+  background: var(--color-ink);
+  color: var(--color-bone);
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  min-height: 100dvh;
+  overflow-x: clip;
+  font-feature-settings: "ss01", "cv11";
+}
+
+::selection {
+  background: var(--color-signal);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-signal);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Custom cursor: only applied by JS on devices with a real mouse. */
+html[data-cursor="custom"],
+html[data-cursor="custom"] a,
+html[data-cursor="custom"] button,
+html[data-cursor="custom"] input,
+html[data-cursor="custom"] textarea {
+  cursor: none;
+}
+
+/* Film grain – one fixed layer, very low opacity. */
+.grain::before {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+/* ---------- Reusable utilities ---------- */
+@utility wrap {
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 4vw, 4rem);
+}
+
+@utility label-mono {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-mist);
+}
+
+@utility dot-grid {
+  background-image: radial-gradient(var(--color-line) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+@utility outline-text {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--color-line);
+}
+
+/* Slow scanning line used inside media placeholders. */
+.scan-line {
+  position: absolute;
+  inset-inline: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-signal), transparent);
+  opacity: 0.35;
+  animation: scan 7s linear infinite;
+}
+@keyframes scan {
+  from { top: -2%; }
+  to { top: 102%; }
+}
+
+.blink {
+  animation: blink 1.6s steps(2, start) infinite;
+}
+@keyframes blink {
+  to { visibility: hidden; }
+}
+
+.spin-slow {
+  animation: spin 1.1s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .scan-line, .blink { animation: none; }
+  .grain::before { display: none; }
+}
