@@ -37,7 +37,7 @@ export function Nav() {
   ];
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 px-4 sm:px-8 py-4 backdrop-blur-md bg-black/60 border-b border-white/5 flex items-center justify-between">
+    <header className="fixed top-0 left-0 w-full z-50 px-4 sm:px-8 py-4 backdrop-blur-xl bg-zinc-950/60 border-b border-white/10 flex items-center justify-between">
       {/* لوگو */}
       <Link href="/" className="flex items-center gap-2 text-white font-bold tracking-wider text-sm hover:text-lime-400 transition">
         <span className="w-2.5 h-2.5 bg-lime-400 rotate-45 inline-block" />

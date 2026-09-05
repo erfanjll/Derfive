@@ -21,7 +21,7 @@ export default function ProjectsPage() {
           as="h1"
           immediate
           text="Built, breaking, or about to exist."
-          className="font-display text-[clamp(2.8rem,8.5vw,8.5rem)] font-extrabold leading-[0.9] tracking-[-0.05em] text-bone"
+          className="font-body text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-tight tracking-tight text-bone"
         />
         <Reveal delay={0.3} className="mt-8 max-w-xl">
           <p className="text-fog md:text-lg">

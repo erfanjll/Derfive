@@ -9,7 +9,7 @@ export function FeaturedProjects() {
   const list = featured.length ? featured : projects.slice(0, 3);
 
   return (
-    <section className="border-y border-line bg-coal py-24 md:py-36" aria-labelledby="home-projects">
+    <section className="ambient-glow border-y border-line bg-coal py-24 md:py-36" aria-labelledby="home-projects">
       <div className="wrap">
         <SectionHeading index="03" eyebrow="Selected projects" title="Things I've built — and things about to be." />
         <span id="home-projects" className="sr-only">Selected projects</span>

@@ -8,7 +8,7 @@ import { ExperienceMeter } from "@/components/game/ExperienceMeter";
 
 export function GameSection() {
   return (
-    <section className="relative border-y border-line bg-coal py-24 md:py-36" aria-labelledby="home-games">
+    <section className="ambient-glow relative border-y border-line bg-coal py-24 md:py-36" aria-labelledby="home-games">
       <div className="wrap">
         <SectionHeading
           index="01"
@@ -22,7 +22,7 @@ export function GameSection() {
           <div className="md:col-span-4">
             <ExperienceMeter compact />
           </div>
-          <Reveal className="md:col-span-8" delay={0.1}>
+          <Reveal className="glow-border rounded-sm md:col-span-8" delay={0.1}>
             <VideoPlayer {...media.videos.gameDemo} label="game / demo" index="01" aspect="16/9" />
           </Reveal>
         </div>

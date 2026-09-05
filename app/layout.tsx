@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Syne, Manrope, JetBrains_Mono } from "next/font/google";
+import { Manrope, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { site } from "@/content/site";
 import { cn } from "@/lib/cn";
@@ -9,8 +9,7 @@ import { Cursor } from "@/components/layout/Cursor";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
 
-const syne = Syne({ subsets: ["latin"], weight: ["500", "700", "800"], variable: "--font-syne", display: "swap" });
-const manrope = Manrope({ subsets: ["latin"], weight: ["400", "500", "600"], variable: "--font-manrope", display: "swap" });
+const manrope = Manrope({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"], variable: "--font-manrope", display: "swap" });
 const jetbrains = JetBrains_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-jetbrains", display: "swap" });
 
 export const metadata: Metadata = {
@@ -42,7 +41,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={cn(syne.variable, manrope.variable, jetbrains.variable, "grain")}>
+    <html lang="en" className={cn(manrope.variable, jetbrains.variable, "grain")}>
       <body id="top" className="bg-ink text-bone antialiased">
         <Providers>
           <a

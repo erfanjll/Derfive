@@ -24,7 +24,7 @@ export function SectionHeading({ index, eyebrow, title, description, as: Tag = "
       </Reveal>
       <div className={cn(align === "split" ? "md:col-span-9" : "md:col-span-12")}>
         <Reveal delay={0.05}>
-          <Tag className="font-display text-[clamp(2.25rem,5.5vw,5rem)] font-bold leading-[0.95] tracking-[-0.03em] text-bone">
+          <Tag className="font-body text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-tight tracking-tight text-bone">
             {title}
           </Tag>
         </Reveal>

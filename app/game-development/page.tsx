@@ -34,7 +34,7 @@ export default function GameDevelopmentPage() {
           as="h1"
           immediate
           text="Games are the main quest."
-          className="font-display text-[clamp(3rem,10vw,10rem)] font-extrabold leading-[0.88] tracking-[-0.05em] text-bone"
+          className="font-body text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-tight tracking-tight text-bone"
         />
         <Reveal delay={0.3} className="mt-10 max-w-2xl">
           <p className="text-lg leading-relaxed text-fog md:text-xl">
@@ -54,17 +54,17 @@ export default function GameDevelopmentPage() {
               <ExperienceMeter />
             </Reveal>
             <div className="grid gap-6 md:col-span-7">
-              <Reveal delay={0.1} className="rounded-sm border border-line bg-graphite p-7 md:p-9">
+              <Reveal delay={0.1} className="glow-border rounded-sm border border-line bg-graphite/60 backdrop-blur-md p-7 md:p-9">
                 <p className="label-mono">The studio</p>
-                <h3 className="mt-4 font-display text-4xl font-extrabold tracking-[-0.03em] md:text-6xl">{site.facts.studio}</h3>
+                <h3 className="mt-4 font-body text-3xl sm:text-4xl md:text-6xl font-black tracking-tight">{site.facts.studio}</h3>
                 <p className="mt-5 max-w-md text-fog">
                   Where the last {site.facts.years} years of making games happened. Specific titles and responsibilities will be listed
                   here as they're added.
                 </p>
               </Reveal>
-              <Reveal delay={0.18} className="rounded-sm border border-line bg-graphite p-7 md:p-9">
+              <Reveal delay={0.18} className="glow-border rounded-sm border border-line bg-graphite/60 backdrop-blur-md p-7 md:p-9">
                 <p className="label-mono">The collaboration</p>
-                <h3 className="mt-4 font-display text-3xl font-extrabold tracking-[-0.03em] md:text-5xl">
+                <h3 className="mt-4 font-body text-2xl sm:text-3xl md:text-5xl font-black tracking-tight">
                   with <span className="text-signal">{site.facts.partner}</span>
                 </h3>
                 <p className="mt-5 max-w-md text-fog">
@@ -121,7 +121,7 @@ export default function GameDevelopmentPage() {
             <p className="label-mono"><span className="text-signal">05</span> — Next</p>
           </div>
           <div className="md:col-span-8">
-            <h2 id="next-title" className="font-display text-3xl font-bold tracking-tight md:text-5xl">Still building.</h2>
+            <h2 id="next-title" className="font-body text-2xl sm:text-3xl md:text-5xl font-black tracking-tight">Still building.</h2>
             <p className="mt-6 max-w-xl text-fog">
               New games and prototypes get added as they're playable — not before. If you want to talk about any of it, the door is open.
             </p>

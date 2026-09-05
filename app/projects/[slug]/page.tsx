@@ -76,7 +76,7 @@ export default async function ProjectPage({ params }: Params) {
           as="h1"
           immediate
           text={project.title}
-          className="font-display text-[clamp(2.5rem,7.5vw,7.5rem)] font-extrabold leading-[0.92] tracking-[-0.045em] text-bone"
+          className="font-body text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-tight tracking-tight text-bone"
         />
         <Reveal delay={0.3} className="mt-8 max-w-2xl">
           <p className="text-lg leading-relaxed text-fog md:text-xl">{project.description}</p>
@@ -97,7 +97,7 @@ export default async function ProjectPage({ params }: Params) {
       {/* Details + description */}
       <section className="wrap grid gap-12 py-20 md:grid-cols-12 md:py-28">
         <Reveal className="md:col-span-4">
-          <dl className="divide-y divide-line border-y border-line">
+          <dl className="glow-border divide-y divide-line border-y border-line rounded-sm">
             {details.map((d) => (
               <div key={d.label} className="grid grid-cols-3 gap-4 py-4">
                 <dt className="label-mono col-span-1 pt-0.5">{d.label}</dt>
@@ -148,7 +148,7 @@ export default async function ProjectPage({ params }: Params) {
           <Link href={`/projects/${next.slug}`} className="group wrap flex flex-col gap-4 py-16 md:flex-row md:items-end md:justify-between md:py-24" data-cursor="view">
             <div>
               <p className="label-mono">Next project</p>
-              <p className="mt-4 font-display text-[clamp(2rem,6vw,5.5rem)] font-extrabold leading-[0.95] tracking-[-0.04em] text-bone transition-colors group-hover:text-signal">
+              <p className="mt-4 font-body text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-tight tracking-tight text-bone transition-colors group-hover:text-signal">
                 {next.title}
               </p>
             </div>

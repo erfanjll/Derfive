@@ -22,7 +22,7 @@ export default function JourneyPage() {
           as="h1"
           immediate
           text="Where it started, where it's going."
-          className="font-display text-[clamp(2.6rem,8vw,8rem)] font-extrabold leading-[0.9] tracking-[-0.05em] text-bone"
+          className="font-body text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-tight tracking-tight text-bone"
         />
         <Reveal delay={0.3} className="mt-8 max-w-xl">
           <p className="text-fog md:text-lg">
@@ -37,7 +37,7 @@ export default function JourneyPage() {
 
       <section className="border-t border-line bg-coal py-24 md:py-32">
         <div className="wrap flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
-          <p className="max-w-md font-display text-2xl font-bold tracking-tight md:text-3xl">The next entry gets written by making something.</p>
+          <p className="max-w-md font-body text-xl sm:text-2xl md:text-3xl font-black tracking-tight">The next entry gets written by making something.</p>
           <div className="flex flex-wrap gap-4">
             <Button href="/projects" magnetic>Projects</Button>
             <Button href="/contact" variant="ghost">Contact</Button>

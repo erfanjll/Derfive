@@ -35,7 +35,7 @@ export default function EditingAnimationPage() {
           as="h1"
           immediate
           text="Side quest. Beginner level."
-          className="font-display text-[clamp(2.8rem,9vw,9rem)] font-extrabold leading-[0.9] tracking-[-0.05em] text-bone"
+          className="font-body text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-tight tracking-tight text-bone"
         />
         <Reveal delay={0.3} className="mt-10 grid gap-8 md:grid-cols-12">
           <p className="text-lg leading-relaxed text-fog md:col-span-7 md:text-xl">
@@ -44,9 +44,9 @@ export default function EditingAnimationPage() {
           </p>
           <div className="md:col-span-4 md:col-start-9">
             <dl className="grid grid-cols-2 gap-4 border-l border-line pl-6">
-              <div><dt className="label-mono">Editing</dt><dd className="mt-1 font-display font-bold">Beginner</dd></div>
-              <div><dt className="label-mono">Animation</dt><dd className="mt-1 font-display font-bold">Beginner</dd></div>
-              <div className="col-span-2"><dt className="label-mono">Direction</dt><dd className="mt-1 font-display font-bold text-signal">Improving</dd></div>
+              <div><dt className="label-mono">Editing</dt><dd className="mt-1 font-body font-black">Beginner</dd></div>
+              <div><dt className="label-mono">Animation</dt><dd className="mt-1 font-body font-black">Beginner</dd></div>
+              <div className="col-span-2"><dt className="label-mono">Direction</dt><dd className="mt-1 font-body font-black text-signal">Improving</dd></div>
             </dl>
           </div>
         </Reveal>
@@ -90,9 +90,9 @@ export default function EditingAnimationPage() {
           <span id="approach-title" className="sr-only">Approach</span>
           <ol className="mt-14 grid gap-6 md:grid-cols-3">
             {approach.map((step, i) => (
-              <Reveal key={step.title} as="li" delay={i * 0.08} className="relative rounded-sm border border-line bg-graphite p-7">
+              <Reveal key={step.title} as="li" delay={i * 0.08} className="relative glow-border rounded-sm border border-line bg-graphite/60 backdrop-blur-md p-7">
                 <span className="font-mono text-xs text-signal">0{i + 1}</span>
-                <h3 className="mt-6 font-display text-2xl font-bold tracking-tight">{step.title}</h3>
+                <h3 className="mt-6 font-body text-xl sm:text-2xl font-black tracking-tight">{step.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-fog">{step.body}</p>
               </Reveal>
             ))}
