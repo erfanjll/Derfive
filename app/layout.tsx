@@ -41,7 +41,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={cn(manrope.variable, jetbrains.variable, "grain")}>
+    <html lang="en" dir="ltr" suppressHydrationWarning className={cn(manrope.variable, jetbrains.variable, "grain")}>
       <body id="top" className="bg-ink text-bone antialiased">
         <Providers>
           <a

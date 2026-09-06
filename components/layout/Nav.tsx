@@ -6,9 +6,21 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { site } from "@/content/site";
 import { EASE } from "@/lib/motion";
+import { useLanguage } from "@/context/LanguageContext";
+import { nav as navDict } from "@/content/i18n";
+
+const navKeyByHref: Record<string, keyof typeof navDict> = {
+  "/about": "About",
+  "/game-development": "Games",
+  "/editing-animation": "Motion",
+  "/projects": "Projects",
+  "/journey": "Journey",
+  "/contact": "Contact",
+};
 
 export function Nav() {
   const pathname = usePathname();
+  const { lang, t, toggleLang } = useLanguage();
   const [isLight, setIsLight] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
 
@@ -42,7 +54,11 @@ export function Nav() {
     }
   };
 
-  const navLinks = site.nav.map((l) => ({ label: l.label.toUpperCase(), href: l.href }));
+  const navLinks = site.nav.map((l) => {
+    const key = navKeyByHref[l.href];
+    const label = key ? t(navDict[key]) : l.label;
+    return { label: lang === "en" ? label.toUpperCase() : label, href: l.href };
+  });
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 px-4 sm:px-8 py-4 backdrop-blur-xl bg-zinc-950/60 border-b border-white/10 flex items-center justify-between">
@@ -71,7 +87,7 @@ export function Nav() {
         ))}
       </nav>
 
-      {/* کلید تم، تماس (دسکتاپ) و همبرگر (موبایل) */}
+      {/* کلید تم، کلید زبان، تماس (دسکتاپ) و همبرگر (موبایل) */}
       <div className="flex items-center gap-3">
         <button
           onClick={toggleTheme}
@@ -87,6 +103,14 @@ export function Nav() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
             </svg>
           )}
+        </button>
+
+        <button
+          onClick={toggleLang}
+          aria-label="Toggle Language"
+          className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-[10px] font-mono font-semibold tracking-wide text-zinc-300 hover:text-lime-400 hover:border-lime-400 transition"
+        >
+          {lang === "en" ? "ENG" : "FA"}
         </button>
 
         <Link
@@ -174,11 +198,18 @@ export function Nav() {
                   Theme
                   <span className="text-lime-400">{isLight ? "Light" : "Dark"}</span>
                 </button>
+                <button
+                  onClick={toggleLang}
+                  className="flex items-center justify-between rounded-full border border-white/20 px-4 py-3 text-xs font-mono tracking-widest text-zinc-200"
+                >
+                  Language
+                  <span className="text-lime-400">{lang === "en" ? "ENG" : "FA"}</span>
+                </button>
                 <Link
                   href="/contact"
                   className="rounded-full bg-lime-400 px-4 py-3 text-center text-xs font-mono font-semibold uppercase tracking-widest text-black transition hover:bg-lime-300"
                 >
-                  Contact
+                  {t(navDict.Contact)}
                 </Link>
               </div>
             </motion.nav>

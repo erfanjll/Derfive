@@ -7,11 +7,14 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { VideoPlayer } from "@/components/media/VideoPlayer";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
+import { useLanguage } from "@/context/LanguageContext";
+import { buttons, projectTranslations } from "@/content/i18n";
 
 /** Featured Motion — inline-playable previews of the four motion & video showcase pieces. */
 export function MotionSection() {
   const ref = useRef<HTMLElement>(null);
   const reduce = useReducedMotion();
+  const { t } = useLanguage();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const y0 = useTransform(scrollYProgress, [0, 1], [60, -60]);
   const y1 = useTransform(scrollYProgress, [0, 1], [0, -140]);
@@ -32,28 +35,31 @@ export function MotionSection() {
       <span id="home-motion" className="sr-only">Editing and animation</span>
 
       <div className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 md:gap-8">
-        {clips.map((clip, i) => (
-          <motion.div
-            key={clip.slug}
-            style={reduce ? undefined : { y: offsets[i] }}
-            transition={{ type: "spring", stiffness: 260, damping: 20 }}
-            className="glow-border rounded-sm"
-          >
-            <VideoPlayer
-              src={clip.video ?? ""}
-              poster={clip.poster}
-              title={clip.title}
-              aspect="16/9"
-              label={clip.subCategory ?? clip.title}
-              index={`0${i + 1}`}
-            />
-            <p className="mt-3 font-body text-sm font-bold tracking-tight text-bone">{clip.title}</p>
-          </motion.div>
-        ))}
+        {clips.map((clip, i) => {
+          const title = t(projectTranslations[clip.slug]?.title ?? { en: clip.title, fa: clip.title });
+          return (
+            <motion.div
+              key={clip.slug}
+              style={reduce ? undefined : { y: offsets[i] }}
+              transition={{ type: "spring", stiffness: 260, damping: 20 }}
+              className="glow-border rounded-sm"
+            >
+              <VideoPlayer
+                src={clip.video ?? ""}
+                poster={clip.poster}
+                title={title}
+                aspect="16/9"
+                label={clip.subCategory ?? title}
+                index={`0${i + 1}`}
+              />
+              <p className="mt-3 font-body text-sm font-bold tracking-tight text-bone">{title}</p>
+            </motion.div>
+          );
+        })}
       </div>
 
       <Reveal className="mt-16">
-        <Button href="/editing-animation" variant="ghost" magnetic>Editing & animation</Button>
+        <Button href="/editing-animation" variant="ghost" magnetic>{t(buttons.editingAnimation)}</Button>
       </Reveal>
     </section>
   );

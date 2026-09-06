@@ -60,24 +60,24 @@ export const projects: Project[] = [
 
   // ---------- Motion & video showcase (strictly 4 slots) ----------
   {
-    title: "Micro Narrative (15s Short)",
+    title: "2D Animation",
     slug: "micro-narrative-15s-short",
     category: "animation",
-    subCategory: "Character Animation",
+    subCategory: "2D Character Animation",
     description:
-      "15-second stylized character animation highlighting comedic staging, anticipation, and secondary motion.",
+      "Stylized keyframe character animation focusing on comedic staging, secondary motion, and expressive timing.",
     featured: true,
     status: "placeholder",
     // video: "/videos/micro-narrative-15s-short.mp4",
     // poster: "/posters/micro-narrative-15s-short.jpg",
   },
   {
-    title: "Sonic Resonance (Equalizer & Kinetic Type)",
+    title: "Music Equalizer",
     slug: "sonic-resonance-equalizer-kinetic-type",
     category: "animation",
-    subCategory: "Kinetic Typography & Audio Reactive",
+    subCategory: "Audio Reactive & Kinetic Typography",
     description:
-      "Rhythmically synchronized spectrum visualizer pairing kinetic typography with audio-reactive screen vibration and pulse dynamics.",
+      "Dynamic music spectrum visualizer synchronized with high-energy typography and bass-reactive visual pulses.",
     featured: true,
     status: "placeholder",
     // video: "/videos/sonic-resonance-equalizer-kinetic-type.mp4",

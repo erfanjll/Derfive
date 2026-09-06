@@ -108,8 +108,10 @@ html[data-cursor="custom"] textarea {
 
 @utility outline-text {
   color: transparent;
-  -webkit-text-stroke: 1px var(--color-line);
+  -webkit-text-stroke: 1.5px var(--color-line);
   paint-order: stroke fill;
+  stroke-linejoin: round;
+  stroke-linecap: round;
   text-rendering: optimizeLegibility;
 }
 
@@ -145,23 +147,43 @@ html[data-cursor="custom"] textarea {
 @utility ambient-glow {
   position: relative;
   isolation: isolate;
+  overflow: hidden;
 }
-.ambient-glow::before {
+/* Two borderless, fully-blurred circular glows instead of a single hard-edged
+   rectangular gradient box — this is what used to show up as a boxy green
+   haze artifact in the lower-left of the home sections. Each glow is a round
+   shape blurred well past its own radius, so no straight edge is ever visible,
+   no matter how it's cropped by the section's overflow-hidden. */
+.ambient-glow::before,
+.ambient-glow::after {
   content: "";
   position: absolute;
-  inset: -20% -10%;
   z-index: -1;
   pointer-events: none;
-  background:
-    radial-gradient(38rem 24rem at 15% 8%, rgba(200, 245, 66, 0.09), transparent 65%),
-    radial-gradient(34rem 26rem at 85% 92%, rgba(127, 224, 168, 0.07), transparent 70%);
-  filter: blur(2px);
+  border-radius: 9999px;
+  filter: blur(140px);
+  opacity: 0.2;
   will-change: transform;
 }
+.ambient-glow::before {
+  top: -10%;
+  left: -10%;
+  width: 40rem;
+  height: 40rem;
+  background: radial-gradient(circle, rgba(200, 245, 66, 0.45), transparent 70%);
+}
+.ambient-glow::after {
+  bottom: -15%;
+  right: -10%;
+  width: 36rem;
+  height: 36rem;
+  background: radial-gradient(circle, rgba(127, 224, 168, 0.35), transparent 70%);
+}
 html.light .ambient-glow::before {
-  background:
-    radial-gradient(38rem 24rem at 15% 8%, rgba(200, 245, 66, 0.14), transparent 65%),
-    radial-gradient(34rem 26rem at 85% 92%, rgba(127, 224, 168, 0.1), transparent 70%);
+  background: radial-gradient(circle, rgba(200, 245, 66, 0.55), transparent 70%);
+}
+html.light .ambient-glow::after {
+  background: radial-gradient(circle, rgba(127, 224, 168, 0.4), transparent 70%);
 }
 
 @utility glass {
@@ -275,4 +297,24 @@ html.light [data-nav-link][data-active="true"] {
 html.nav-open,
 html.nav-open body {
   overflow: hidden;
+}
+
+/* ---------- Custom Portfolio Scrollbar ---------- */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-ink);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-line);
+  border-radius: 9999px;
+  transition: background 0.2s ease;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-signal);
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line) var(--color-ink);
 }

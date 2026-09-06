@@ -1,7 +1,23 @@
+"use client";
+
 import Link from "next/link";
 import { site } from "@/content/site";
+import { useLanguage } from "@/context/LanguageContext";
+import { motto, nav as navDict } from "@/content/i18n";
+
+const navKeyByHref: Record<string, keyof typeof navDict> = {
+  "/": "Home",
+  "/about": "About",
+  "/game-development": "Games",
+  "/editing-animation": "Motion",
+  "/projects": "Projects",
+  "/journey": "Journey",
+  "/contact": "Contact",
+};
 
 export function Footer() {
+  const { t } = useLanguage();
+
   return (
     <footer className="relative border-t border-line bg-coal">
       <div className="wrap py-14 md:py-20">
@@ -11,18 +27,23 @@ export function Footer() {
             <p className="font-display text-[clamp(3.5rem,10vw,9rem)] font-extrabold leading-[0.85] tracking-[-0.04em] outline-text select-none">
               {site.brand.toUpperCase()}
             </p>
+            <p className="mt-4 font-mono text-xs text-mist tracking-widest uppercase">{t(motto)}</p>
           </div>
 
           <nav aria-label="Footer" className="md:col-span-3">
             <p className="label-mono mb-4">Pages</p>
             <ul className="space-y-2">
-              {[{ label: "Home", href: "/" }, ...site.nav, { label: "Contact", href: "/contact" }].map((l) => (
-                <li key={l.href}>
-                  <Link href={l.href} className="text-sm text-fog transition-colors hover:text-signal">
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
+              {[{ label: "Home", href: "/" }, ...site.nav, { label: "Contact", href: "/contact" }].map((l) => {
+                const key = navKeyByHref[l.href];
+                const label = key ? t(navDict[key]) : l.label;
+                return (
+                  <li key={l.href}>
+                    <Link href={l.href} className="text-sm text-fog transition-colors hover:text-signal">
+                      {label}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </nav>
 

@@ -1,16 +1,24 @@
+"use client";
+
 import { getProjectsByCategory } from "@/content/projects";
 import { site } from "@/content/site";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
 import { ProjectCard } from "@/components/projects/ProjectCard";
+import { useLanguage } from "@/context/LanguageContext";
+import { buttons } from "@/content/i18n";
 
 /** Featured Games — the two game-development project cards, full stop. */
 export function GameSection() {
   const games = getProjectsByCategory("game");
+  const { t } = useLanguage();
 
   return (
     <section className="ambient-glow relative border-y border-line bg-coal py-24 md:py-36" aria-labelledby="home-games">
+      {/* Borderless circular accent glow, lower-left — no hard rectangular edges. */}
+      <div aria-hidden className="pointer-events-none absolute -bottom-24 -left-24 h-[26rem] w-[26rem] rounded-full bg-lime-400/10 blur-[140px] opacity-20" />
+
       <div className="wrap">
         <SectionHeading
           index="01"
@@ -29,8 +37,8 @@ export function GameSection() {
         </div>
 
         <Reveal className="mt-12 flex flex-wrap items-center gap-4">
-          <Button href="/game-development" magnetic>Game development</Button>
-          <Button href="/projects" variant="ghost">All projects</Button>
+          <Button href="/game-development" magnetic>{t(buttons.gameDevelopment)}</Button>
+          <Button href="/projects" variant="ghost">{t(buttons.allProjects)}</Button>
         </Reveal>
       </div>
     </section>

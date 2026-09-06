@@ -1,8 +1,13 @@
 "use client";
 
 import { MotionConfig } from "motion/react";
+import { LanguageProvider } from "@/context/LanguageContext";
 
-/** Global motion settings: honours the user's "reduce motion" system preference. */
+/** Global motion settings + language (EN/FA) context for the whole app. */
 export function Providers({ children }: { children: React.ReactNode }) {
-  return <MotionConfig reducedMotion="user">{children}</MotionConfig>;
+  return (
+    <LanguageProvider>
+      <MotionConfig reducedMotion="user">{children}</MotionConfig>
+    </LanguageProvider>
+  );
 }

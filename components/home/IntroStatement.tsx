@@ -1,15 +1,19 @@
 "use client";
 
 import { site } from "@/content/site";
-
-const chips = [
-  "Technical Artist & Game Developer",
-  `${site.facts.studio} · with ${site.facts.partner}`,
-  `${site.facts.university} · ${site.facts.program}`,
-  "Gameplay Systems & Motion Graphics",
-];
+import { useLanguage } from "@/context/LanguageContext";
+import { persona } from "@/content/i18n";
 
 export function IntroStatement() {
+  const { t } = useLanguage();
+
+  const chips = [
+    t(persona.identity),
+    `${site.facts.studio} · with ${site.facts.partner}`,
+    `${t(persona.university)} · ${site.facts.program}`,
+    "Gameplay Systems & Motion Graphics",
+  ];
+
   return (
     <section className="border-t border-line bg-graphite/40 py-16">
       <div className="wrap flex flex-wrap gap-3">
