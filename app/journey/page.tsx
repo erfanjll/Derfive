@@ -7,7 +7,7 @@ import { Timeline } from "@/components/journey/Timeline";
 
 export const metadata = pageMeta({
   title: "Journey",
-  description: `From four years of games at ${site.facts.studio} to computer science at ${site.facts.university} — the path so far.`,
+  description: `From game development at ${site.facts.studio} to Computer Engineering at ${site.facts.university} — the path so far.`,
   path: "/journey",
 });
 

@@ -8,17 +8,18 @@ import { TextReveal } from "@/components/ui/TextReveal";
 import { Button } from "@/components/ui/Button";
 import { VideoPlayer } from "@/components/media/VideoPlayer";
 import { MediaImage } from "@/components/media/MediaImage";
-import { ExperienceMeter } from "@/components/game/ExperienceMeter";
 import { ProjectCard } from "@/components/projects/ProjectCard";
 
 export const metadata = pageMeta({
   title: "Game Development",
-  description: `Four years of game development at ${site.facts.studio} together with ${site.facts.partner}. Games, footage and experiments by Erfan Jalali.`,
+  description: `Technical Art & Game Development at ${site.facts.studio} together with ${site.facts.partner}. Games, footage and experiments by Erfan Jalali.`,
   path: "/game-development",
 });
 
 // Asymmetric layout for the four screenshot slots.
 const screenLayout = ["md:col-span-7", "md:col-span-5 md:mt-16", "md:col-span-5", "md:col-span-7 md:-mt-16"];
+
+const stack = ["Unity", "C#", "2D Physics Systems", "Java / C#", "OOP Architecture", "Multithreaded State Loops"];
 
 export default function GameDevelopmentPage() {
   const games = getProjectsByCategory("game");
@@ -38,41 +39,45 @@ export default function GameDevelopmentPage() {
         />
         <Reveal delay={0.3} className="mt-10 max-w-2xl">
           <p className="text-lg leading-relaxed text-fog md:text-xl">
-            {site.facts.years} years at {site.facts.studio}, together with {site.facts.partner}. This page is where the games live —
-            titles, roles, tools and footage land here as they become ready to show.
+            Building at {site.facts.studio}, together with {site.facts.partner} — as a Technical Artist bridging engine
+            systems and motion design. This page is where the games live — titles, roles, tools and footage land here
+            as they become ready to show.
           </p>
         </Reveal>
       </section>
 
-      {/* Experience */}
-      <section className="border-y border-line bg-coal py-24 md:py-36" aria-labelledby="exp-title">
+      {/* Studio & stack */}
+      <section className="border-y border-line bg-coal py-24 md:py-36" aria-labelledby="stack-title">
         <div className="wrap">
-          <SectionHeading index="01" eyebrow="Experience" title="Four years, one studio, one collaborator." />
-          <span id="exp-title" className="sr-only">Experience</span>
+          <SectionHeading index="01" eyebrow="Studio & stack" title="One studio, one collaborator, a growing stack." />
+          <span id="stack-title" className="sr-only">Studio and stack</span>
           <div className="mt-16 grid gap-6 md:grid-cols-12">
-            <Reveal className="md:col-span-5">
-              <ExperienceMeter />
+            <Reveal className="glow-border rounded-sm border border-line bg-graphite/60 backdrop-blur-md p-7 md:col-span-6 md:p-9">
+              <p className="label-mono">The studio</p>
+              <h3 className="mt-4 font-body text-3xl sm:text-4xl md:text-6xl font-black tracking-tight">{site.facts.studio}</h3>
+              <p className="mt-5 max-w-md text-fog">
+                Where systems programming and technical art come together. Specific titles and responsibilities are
+                listed here as they&apos;re added.
+              </p>
             </Reveal>
-            <div className="grid gap-6 md:col-span-7">
-              <Reveal delay={0.1} className="glow-border rounded-sm border border-line bg-graphite/60 backdrop-blur-md p-7 md:p-9">
-                <p className="label-mono">The studio</p>
-                <h3 className="mt-4 font-body text-3xl sm:text-4xl md:text-6xl font-black tracking-tight">{site.facts.studio}</h3>
-                <p className="mt-5 max-w-md text-fog">
-                  Where the last {site.facts.years} years of making games happened. Specific titles and responsibilities will be listed
-                  here as they're added.
-                </p>
-              </Reveal>
-              <Reveal delay={0.18} className="glow-border rounded-sm border border-line bg-graphite/60 backdrop-blur-md p-7 md:p-9">
-                <p className="label-mono">The collaboration</p>
-                <h3 className="mt-4 font-body text-2xl sm:text-3xl md:text-5xl font-black tracking-tight">
-                  with <span className="text-signal">{site.facts.partner}</span>
-                </h3>
-                <p className="mt-5 max-w-md text-fog">
-                  Building games together for four years. A long two-person collaboration is its own kind of education — in
-                  scope, in disagreement, and in actually finishing.
-                </p>
-              </Reveal>
-            </div>
+            <Reveal delay={0.08} className="glow-border rounded-sm border border-line bg-graphite/60 backdrop-blur-md p-7 md:col-span-6 md:p-9">
+              <p className="label-mono">The collaboration</p>
+              <h3 className="mt-4 font-body text-2xl sm:text-3xl md:text-5xl font-black tracking-tight">
+                with <span className="text-signal">{site.facts.partner}</span>
+              </h3>
+              <p className="mt-5 max-w-md text-fog">
+                A long two-person collaboration is its own kind of education — in scope, in disagreement, and in
+                actually finishing.
+              </p>
+            </Reveal>
+            <Reveal delay={0.16} className="glow-border rounded-sm border border-line bg-graphite/60 backdrop-blur-md p-7 md:col-span-12 md:p-9">
+              <p className="label-mono mb-5">Tech stack</p>
+              <div className="flex flex-wrap gap-2">
+                {stack.map((t) => (
+                  <span key={t} className="rounded-full border border-line px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.12em] text-fog">{t}</span>
+                ))}
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -103,13 +108,11 @@ export default function GameDevelopmentPage() {
 
       {/* Game projects */}
       <section className="wrap py-24 md:py-36" aria-labelledby="games-title">
-        <SectionHeading index="04" eyebrow="Game projects" title="The games." description="Every entry here is edited in content/projects.ts. Placeholder slots are marked until a real project replaces them." />
+        <SectionHeading index="04" eyebrow="Game projects" title="The games." description="Every entry here is edited in content/projects.ts." />
         <span id="games-title" className="sr-only">Game projects</span>
-        <div className="mt-14 grid gap-10 md:grid-cols-12 md:gap-8">
+        <div className="mt-14 grid gap-10 md:grid-cols-2 md:gap-8">
           {games.map((p, i) => (
-            <div key={p.slug} className={i % 2 === 0 ? "md:col-span-7" : "md:col-span-5 md:mt-20"}>
-              <ProjectCard project={p} index={i} size={i % 2 === 0 ? "large" : "regular"} />
-            </div>
+            <ProjectCard key={p.slug} project={p} index={i} size="large" />
           ))}
         </div>
       </section>
@@ -123,7 +126,7 @@ export default function GameDevelopmentPage() {
           <div className="md:col-span-8">
             <h2 id="next-title" className="font-body text-2xl sm:text-3xl md:text-5xl font-black tracking-tight">Still building.</h2>
             <p className="mt-6 max-w-xl text-fog">
-              New games and prototypes get added as they're playable — not before. If you want to talk about any of it, the door is open.
+              New games and prototypes get added as they&apos;re playable — not before. If you want to talk about any of it, the door is open.
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
               <Button href="/projects" magnetic>All projects</Button>

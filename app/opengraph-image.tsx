@@ -31,7 +31,7 @@ export default function OpenGraphImage() {
           <div style={{ width: 56, height: 56, background: "#c8f542", transform: "rotate(45deg)", marginBottom: 24 }} />
         </div>
         <div style={{ display: "flex", justifyContent: "space-between", fontSize: 22, letterSpacing: 4, color: "#8b8b94" }}>
-          <span>{site.facts.studio.toUpperCase()} · {site.facts.years} YRS</span>
+          <span>{site.facts.studio.toUpperCase()} · {site.facts.identity.toUpperCase()}</span>
           <span>{site.facts.university.toUpperCase()}</span>
         </div>
       </div>

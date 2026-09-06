@@ -2,11 +2,15 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
+import { site } from "@/content/site";
+import { EASE } from "@/lib/motion";
 
 export function Nav() {
   const pathname = usePathname();
   const [isLight, setIsLight] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   useEffect(() => {
     const saved = localStorage.getItem("derfive-theme");
@@ -15,6 +19,16 @@ export function Nav() {
       document.documentElement.classList.add("light");
     }
   }, []);
+
+  // Lock body scroll and clear the flag if the user resizes past the mobile breakpoint.
+  useEffect(() => {
+    document.documentElement.classList.toggle("nav-open", drawerOpen);
+    return () => document.documentElement.classList.remove("nav-open");
+  }, [drawerOpen]);
+
+  useEffect(() => {
+    setDrawerOpen(false);
+  }, [pathname]);
 
   const toggleTheme = () => {
     if (isLight) {
@@ -28,13 +42,7 @@ export function Nav() {
     }
   };
 
-  const navLinks = [
-    { label: "ABOUT", href: "/about" },
-    { label: "GAMES", href: "/game-development" },
-    { label: "MOTION", href: "/editing-animation" },
-    { label: "PROJECTS", href: "/projects" },
-    { label: "JOURNEY", href: "/journey" },
-  ];
+  const navLinks = site.nav.map((l) => ({ label: l.label.toUpperCase(), href: l.href }));
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 px-4 sm:px-8 py-4 backdrop-blur-xl bg-zinc-950/60 border-b border-white/10 flex items-center justify-between">
@@ -44,20 +52,26 @@ export function Nav() {
         <span>Derfive</span>
       </Link>
 
-      {/* لینک‌ها */}
-      <nav className="hidden md:flex items-center gap-6 text-xs font-mono tracking-widest text-zinc-400">
+      {/* لینک‌های دسکتاپ — رنگ‌ها هرگز روی پس‌زمینه روشن سفید نمی‌شوند */}
+      <nav className="hidden md:flex items-center gap-6 text-xs font-mono tracking-widest">
         {navLinks.map((link) => (
           <Link
             key={link.href}
             href={link.href}
-            className={`transition hover:text-white ${pathname === link.href ? "text-lime-400 font-bold" : ""}`}
+            data-nav-link
+            data-active={pathname === link.href}
+            className={`transition-colors ${
+              pathname === link.href
+                ? "text-lime-600 dark:text-lime-400 font-bold"
+                : "text-zinc-600 hover:text-black dark:text-zinc-400 dark:hover:text-white"
+            }`}
           >
             {link.label}
           </Link>
         ))}
       </nav>
 
-      {/* کلید تم و تماس */}
+      {/* کلید تم، تماس (دسکتاپ) و همبرگر (موبایل) */}
       <div className="flex items-center gap-3">
         <button
           onClick={toggleTheme}
@@ -77,11 +91,100 @@ export function Nav() {
 
         <Link
           href="/contact"
-          className="px-4 py-1.5 rounded-full border border-white/20 text-xs font-mono tracking-widest text-zinc-200 hover:border-lime-400 hover:text-lime-400 transition"
+          className="hidden md:inline-flex px-4 py-1.5 rounded-full border border-white/20 text-xs font-mono tracking-widest text-zinc-200 hover:border-lime-400 hover:text-lime-400 transition"
         >
           CONTACT
         </Link>
+
+        <button
+          onClick={() => setDrawerOpen((v) => !v)}
+          aria-label={drawerOpen ? "Close menu" : "Open menu"}
+          aria-expanded={drawerOpen}
+          aria-controls="mobile-nav-drawer"
+          className="md:hidden relative w-9 h-9 flex flex-col items-center justify-center gap-[5px] rounded-full border border-white/20 text-zinc-200"
+        >
+          <motion.span
+            animate={drawerOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
+            className="block h-[1.5px] w-4 bg-current"
+          />
+          <motion.span
+            animate={drawerOpen ? { opacity: 0 } : { opacity: 1 }}
+            className="block h-[1.5px] w-4 bg-current"
+          />
+          <motion.span
+            animate={drawerOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
+            className="block h-[1.5px] w-4 bg-current"
+          />
+        </button>
       </div>
+
+      {/* درور موبایل */}
+      <AnimatePresence>
+        {drawerOpen && (
+          <>
+            <motion.div
+              key="backdrop"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              onClick={() => setDrawerOpen(false)}
+              className="md:hidden fixed inset-0 top-[64px] z-40 bg-black/60 backdrop-blur-sm"
+              aria-hidden
+            />
+            <motion.nav
+              key="drawer"
+              id="mobile-nav-drawer"
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ duration: 0.4, ease: EASE }}
+              className="md:hidden fixed right-0 top-[64px] z-50 flex h-[calc(100dvh-64px)] w-[min(85vw,340px)] flex-col justify-between overflow-y-auto border-l border-white/10 bg-zinc-950/95 px-6 py-8 backdrop-blur-xl"
+              aria-label="Mobile navigation"
+            >
+              <ul className="flex flex-col gap-1">
+                {navLinks.map((link, i) => (
+                  <motion.li
+                    key={link.href}
+                    initial={{ opacity: 0, x: 24 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.05 + i * 0.05, duration: 0.3, ease: EASE }}
+                  >
+                    <Link
+                      href={link.href}
+                      data-nav-link
+                      data-active={pathname === link.href}
+                      className={`block py-3 font-mono text-lg tracking-widest transition-colors ${
+                        pathname === link.href
+                          ? "text-lime-600 dark:text-lime-400 font-bold"
+                          : "text-zinc-600 hover:text-black dark:text-zinc-400 dark:hover:text-white"
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  </motion.li>
+                ))}
+              </ul>
+
+              <div className="flex flex-col gap-4 border-t border-white/10 pt-6">
+                <button
+                  onClick={toggleTheme}
+                  className="flex items-center justify-between rounded-full border border-white/20 px-4 py-3 text-xs font-mono tracking-widest text-zinc-200"
+                >
+                  Theme
+                  <span className="text-lime-400">{isLight ? "Light" : "Dark"}</span>
+                </button>
+                <Link
+                  href="/contact"
+                  className="rounded-full bg-lime-400 px-4 py-3 text-center text-xs font-mono font-semibold uppercase tracking-widest text-black transition hover:bg-lime-300"
+                >
+                  Contact
+                </Link>
+              </div>
+            </motion.nav>
+          </>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

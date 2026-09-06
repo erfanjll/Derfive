@@ -8,23 +8,23 @@
 export const site = {
   name: "Erfan Jalali",
   brand: "Derfive",
-  role: "Game Developer",
+  role: "Technical Artist & Game Developer",
 
   // Used in the browser tab and search results.
   description:
-    "Derfive is the personal portfolio of Erfan Jalali — a game developer with four years at EMVP alongside Mobin Kohi, currently studying computer science at Shahid Beheshti University.",
+    "Derfive is the personal portfolio of Erfan Jalali — a Technical Artist & Game Developer building EMVP with Mobin Kohi, bridging engine systems and cinematic motion design as a Computer Engineering student at Shahid Beheshti University.",
 
   // Replace via the NEXT_PUBLIC_SITE_URL environment variable after deploying.
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://derfive.example.com",
 
-  // Facts that appear across the site. Keep them accurate.
+  // Facts that appear across the site. Keep them accurate. No date/year counters —
+  // durations age badly, so this site describes scope and craft instead of a clock.
   facts: {
-    years: "4",
     studio: "EMVP",
     partner: "Mobin Kohi",
     university: "Shahid Beheshti University",
-    program: "Computer Science / Computer Engineering",
-    semester: "Semester 2",
+    program: "Computer Engineering",
+    identity: "Technical Artist & Game Developer",
   },
 
   // Main navigation (desktop + mobile). "Contact" is added automatically as the last item.

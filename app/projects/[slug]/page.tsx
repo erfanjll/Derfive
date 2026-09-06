@@ -41,8 +41,8 @@ export default async function ProjectPage({ params }: Params) {
   const index = String(projects.findIndex((p) => p.slug === project.slug) + 1).padStart(2, "0");
 
   const details: Array<{ label: string; value: React.ReactNode }> = [
-    { label: "Category", value: label },
-    { label: "Year", value: project.year && project.year !== "—" ? project.year : "To be added" },
+    { label: "Category", value: project.subCategory ?? label },
+    { label: "Team", value: project.team ?? "Solo" },
     { label: "Role", value: project.role ?? "To be added" },
     { label: "Status", value: statusLabels[project.status ?? "prototype"] },
     {
@@ -122,7 +122,7 @@ export default async function ProjectPage({ params }: Params) {
             <div className="dot-grid rounded-sm border border-dashed border-line p-8">
               <p className="font-mono text-xs uppercase tracking-[0.14em] text-mist">Details coming soon</p>
               <p className="mt-3 max-w-md text-sm text-fog">
-                The full write-up for this project hasn't been added yet. It'll cover what it is, how it was made, and what was learned.
+                The full write-up for this project hasn&apos;t been added yet. It&apos;ll cover what it is, how it was made, and what was learned.
               </p>
             </div>
           )}

@@ -53,7 +53,7 @@ export function ProjectCard({ project, index, size = "regular" }: ProjectCardPro
           </div>
           <div className="shrink-0 text-right font-mono text-[11px] uppercase tracking-[0.14em] text-mist">
             <p>{label}</p>
-            <p>{project.year ?? "—"}</p>
+            <p>{project.subCategory ?? project.role ?? "—"}</p>
           </div>
         </div>
       </Link>

@@ -33,14 +33,23 @@ html {
   color: var(--color-bone);
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  overflow-x: clip;
   transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 body {
   font-family: var(--font-body);
   min-height: 100dvh;
+  width: 100%;
   overflow-x: clip;
   font-feature-settings: "ss01", "cv11";
+}
+
+/* Any SVG title/logo strokes render fill under stroke so joins (e.g. the leg
+   of an "R") never clip or show artifacting. */
+svg text,
+.stroke-title {
+  paint-order: stroke fill;
 }
 
 ::selection {
@@ -100,6 +109,8 @@ html[data-cursor="custom"] textarea {
 @utility outline-text {
   color: transparent;
   -webkit-text-stroke: 1px var(--color-line);
+  paint-order: stroke fill;
+  text-rendering: optimizeLegibility;
 }
 
 /* Slow scanning line used inside media placeholders. */
@@ -242,4 +253,26 @@ html.light .bg-black\/40 {
 html.light .grain::before {
   opacity: 0.02;
   mix-blend-mode: multiply;
+}
+
+/* Nav links must never resolve to white text on the light background —
+   this overrides any hover:text-white utility left on nav links. */
+html.light nav a,
+html.light [data-nav-link] {
+  color: #52525b !important;
+}
+html.light nav a:hover,
+html.light [data-nav-link]:hover {
+  color: #09090b !important;
+}
+html.light nav a[data-active="true"],
+html.light [data-nav-link][data-active="true"] {
+  color: var(--color-signal-dim) !important;
+  font-weight: 700;
+}
+
+/* Mobile nav drawer: lock page scroll behind it without causing layout shift. */
+html.nav-open,
+html.nav-open body {
+  overflow: hidden;
 }

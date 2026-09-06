@@ -1,8 +1,8 @@
 /**
  * ============================================================
  *  JOURNEY / TIMELINE
- *  Add real dates in `period` when you want to — until then the
- *  timeline stays relative on purpose.
+ *  Real dates, in order. No arbitrary "years of experience"
+ *  counters — just what happened and when.
  * ============================================================
  */
 
@@ -17,33 +17,33 @@ export interface JourneyStage {
 
 export const journey: JourneyStage[] = [
   {
-    id: "games",
+    id: "inception",
     index: "01",
-    title: "Game Development",
-    period: "4 years — ongoing",
+    title: "Game Development Foundations",
+    period: "2021 — Grade 9 · Inception",
     org: "EMVP · with Mobin Kohi",
-    body: "The main quest. Four years of building games at EMVP together with Mobin Kohi — learning engines, scope, and how to actually finish things.",
+    body: "Began programming in C#, learned core engine mechanics, and co-founded the EMVP collaboration with Mobin Kohi.",
   },
   {
-    id: "creative",
+    id: "visual-synthesis",
     index: "02",
-    title: "Creative Exploration",
-    period: "Beginner — learning",
-    body: "Editing and animation entered the picture as a side quest. Still early, still clumsy in places, and moving fast.",
+    title: "Motion Graphics & Digital Video",
+    period: "2022 — Grade 10 · Visual Synthesis",
+    body: "Expanded into After Effects, cinematic editing, and keyframe animation to bridge visual arts with code.",
   },
   {
-    id: "study",
+    id: "engineering-grounding",
     index: "03",
-    title: "Computer Science",
-    period: "Semester 2 — current",
+    title: "Computer Engineering Grounding",
+    period: "2025 — Freshman Year",
     org: "Shahid Beheshti University",
-    body: "Formal ground under the practical work. Algorithms and theory during the day; the games benefit at night.",
+    body: "Admitted to SBU. Deepened technical mastery in data structures, concurrent programming, and object-oriented architecture.",
   },
   {
-    id: "next",
+    id: "horizon",
     index: "04",
-    title: "Next",
-    period: "Open",
-    body: "More games, better tools, sharper motion. Details land here as they happen — nothing announced before it's real.",
+    title: "Production-Grade Synthesis",
+    period: "Horizon — Present & Forward",
+    body: "Developing scalable interactive game mechanics, richer audiovisual productions, and advancing technical art workflows.",
   },
 ];

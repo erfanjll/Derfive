@@ -29,7 +29,9 @@ export interface Project {
 
   /** Everything below is optional. Delete the line or leave it out if you don't have it. */
   longDescription?: string;
-  year?: string;
+  /** Finer-grained label under the main category, e.g. "Kinetic Typography & Audio Reactive". */
+  subCategory?: string;
+  team?: string;
   role?: string;
   technologies?: string[];
   featured?: boolean; // featured projects appear on the homepage and larger in the grid

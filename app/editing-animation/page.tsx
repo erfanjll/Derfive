@@ -39,8 +39,8 @@ export default function EditingAnimationPage() {
         />
         <Reveal delay={0.3} className="mt-10 grid gap-8 md:grid-cols-12">
           <p className="text-lg leading-relaxed text-fog md:col-span-7 md:text-xl">
-            I'm early in editing and animation and this page says so on purpose. It's the part of my work that changes fastest —
-            so rather than wait until it's polished, it goes up as it improves.
+            I&apos;m early in editing and animation and this page says so on purpose. It&apos;s the part of my work that changes fastest —
+            so rather than wait until it&apos;s polished, it goes up as it improves.
           </p>
           <div className="md:col-span-4 md:col-start-9">
             <dl className="grid grid-cols-2 gap-4 border-l border-line pl-6">
@@ -112,7 +112,7 @@ export default function EditingAnimationPage() {
           ))}
         </div>
         <Reveal className="mt-20 flex flex-col gap-6 border-t border-line pt-10 md:flex-row md:items-end md:justify-between">
-          <p className="max-w-md text-fog">More pieces get added here as they're finished. The bar is "would I show this to someone" — not perfection.</p>
+          <p className="max-w-md text-fog">More pieces get added here as they&apos;re finished. The bar is &quot;would I show this to someone&quot; — not perfection.</p>
           <Button href="/projects" variant="ghost" magnetic>All projects</Button>
         </Reveal>
       </section>
