@@ -7,23 +7,14 @@ import { AnimatePresence, motion } from "motion/react";
 import { site } from "@/content/site";
 import { EASE } from "@/lib/motion";
 import { useLanguage } from "@/context/LanguageContext";
-import { nav as navDict, settings as settingsDict } from "@/content/i18n";
-
-const navKeyByHref: Record<string, keyof typeof navDict> = {
-  "/about": "About",
-  "/game-development": "Games",
-  "/editing-animation": "Motion",
-  "/projects": "Projects",
-  "/journey": "Journey",
-  "/contact": "Contact",
-};
 
 export function Nav() {
   const pathname = usePathname();
-  const { lang, t, toggleLang } = useLanguage();
+  // The language state stays here so the ENG/FA indicator can react — but UI
+  // chrome itself is ALWAYS English (Rule 1 of the bilingual system).
+  const { lang, toggleLang } = useLanguage();
   const [isLight, setIsLight] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const { theme, light, dark, language, toggleTheme: toggleThemeLabel, toggleLang: toggleLangLabel } = settingsDict;
 
   useEffect(() => {
     // Re-sync from localStorage AND the live <html> class (which a
@@ -58,11 +49,7 @@ export function Nav() {
     }
   };
 
-  const navLinks = site.nav.map((l) => {
-    const key = navKeyByHref[l.href];
-    const label = key ? t(navDict[key]) : l.label;
-    return { label: lang === "en" ? label.toUpperCase() : label, href: l.href };
-  });
+  const navLinks = site.nav.map((l) => ({ label: l.label.toUpperCase(), href: l.href }));
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 px-4 sm:px-8 py-4 backdrop-blur-xl bg-zinc-950/60 border-b border-white/10 flex items-center justify-between">
@@ -95,7 +82,7 @@ export function Nav() {
       <div className="flex items-center gap-3">
         <button
           onClick={toggleTheme}
-          aria-label={t(toggleThemeLabel)}
+          aria-label="Toggle theme"
           className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-zinc-300 hover:text-lime-400 hover:border-lime-400 transition"
         >
           {isLight ? (
@@ -111,7 +98,7 @@ export function Nav() {
 
         <button
           onClick={toggleLang}
-          aria-label={t(toggleLangLabel)}
+          aria-label="Toggle language"
           className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-[10px] font-mono font-semibold tracking-wide text-zinc-300 hover:text-lime-400 hover:border-lime-400 transition"
         >
           {lang === "en" ? "ENG" : "FA"}
@@ -199,21 +186,21 @@ export function Nav() {
                   onClick={toggleTheme}
                   className="flex items-center justify-between rounded-full border border-white/20 px-4 py-3 text-xs font-mono tracking-widest text-zinc-200"
                 >
-                  {t(theme)}
-                  <span className="text-lime-400">{isLight ? t(light) : t(dark)}</span>
+                  Theme
+                  <span className="text-lime-400">{isLight ? "Light" : "Dark"}</span>
                 </button>
                 <button
                   onClick={toggleLang}
                   className="flex items-center justify-between rounded-full border border-white/20 px-4 py-3 text-xs font-mono tracking-widest text-zinc-200"
                 >
-                  {t(language)}
+                  Language
                   <span className="text-lime-400">{lang === "en" ? "ENG" : "FA"}</span>
                 </button>
                 <Link
                   href="/contact"
                   className="rounded-full bg-lime-400 px-4 py-3 text-center text-xs font-mono font-semibold uppercase tracking-widest text-black transition hover:bg-lime-300"
                 >
-                  {t(navDict.Contact)}
+                  Contact
                 </Link>
               </div>
             </motion.nav>

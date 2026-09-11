@@ -1,16 +1,12 @@
 "use client";
 
 import { site } from "@/content/site";
-import { useLanguage } from "@/context/LanguageContext";
-import { persona } from "@/content/i18n";
 
 export function IntroStatement() {
-  const { t } = useLanguage();
-
   const chips = [
-    t(persona.identity),
+    site.facts.identity,
     `${site.facts.studio} · with ${site.facts.partner}`,
-    `${t(persona.university)} · ${site.facts.program}`,
+    `${site.facts.university} · ${site.facts.program}`,
     "Gameplay Systems & Motion Graphics",
   ];
 

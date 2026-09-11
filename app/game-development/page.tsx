@@ -9,6 +9,8 @@ import { Button } from "@/components/ui/Button";
 import { VideoPlayer } from "@/components/media/VideoPlayer";
 import { MediaImage } from "@/components/media/MediaImage";
 import { ProjectCard } from "@/components/projects/ProjectCard";
+import { TText } from "@/components/ui/TText";
+import { gamePageCopy } from "@/content/i18n";
 
 export const metadata = pageMeta({
   title: "Game Development",
@@ -38,11 +40,11 @@ export default function GameDevelopmentPage() {
           className="font-body text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-tight tracking-tight text-bone"
         />
         <Reveal delay={0.3} className="mt-10 max-w-2xl">
-          <p className="text-lg leading-relaxed text-fog md:text-xl">
-            Building at {site.facts.studio}, together with {site.facts.partner} — as a Technical Artist bridging engine
-            systems and motion design. This page is where the games live — titles, roles, tools and footage land here
-            as they become ready to show.
-          </p>
+          <TText
+            en={gamePageCopy.intro.en}
+            fa={gamePageCopy.intro.fa}
+            className="text-lg leading-relaxed text-fog md:text-xl"
+          />
         </Reveal>
       </section>
 
@@ -55,20 +57,22 @@ export default function GameDevelopmentPage() {
             <Reveal className="glow-border rounded-sm border border-line bg-graphite/60 backdrop-blur-md p-7 md:col-span-6 md:p-9">
               <p className="label-mono">The studio</p>
               <h3 className="mt-4 font-body text-3xl sm:text-4xl md:text-6xl font-black tracking-tight">{site.facts.studio}</h3>
-              <p className="mt-5 max-w-md text-fog">
-                Where systems programming and technical art come together. Specific titles and responsibilities are
-                listed here as they&apos;re added.
-              </p>
+              <TText
+                en={gamePageCopy.studioBody.en}
+                fa={gamePageCopy.studioBody.fa}
+                className="mt-5 max-w-md text-fog"
+              />
             </Reveal>
             <Reveal delay={0.08} className="glow-border rounded-sm border border-line bg-graphite/60 backdrop-blur-md p-7 md:col-span-6 md:p-9">
               <p className="label-mono">The collaboration</p>
               <h3 className="mt-4 font-body text-2xl sm:text-3xl md:text-5xl font-black tracking-tight">
                 with <span className="text-signal">{site.facts.partner}</span>
               </h3>
-              <p className="mt-5 max-w-md text-fog">
-                A long two-person collaboration is its own kind of education — in scope, in disagreement, and in
-                actually finishing.
-              </p>
+              <TText
+                en={gamePageCopy.collaborationBody.en}
+                fa={gamePageCopy.collaborationBody.fa}
+                className="mt-5 max-w-md text-fog"
+              />
             </Reveal>
             <Reveal delay={0.16} className="glow-border rounded-sm border border-line bg-graphite/60 backdrop-blur-md p-7 md:col-span-12 md:p-9">
               <p className="label-mono mb-5">Tech stack</p>
@@ -84,7 +88,7 @@ export default function GameDevelopmentPage() {
 
       {/* Footage */}
       <section className="wrap py-24 md:py-36" aria-labelledby="footage-title">
-        <SectionHeading index="02" eyebrow="Footage" title="Gameplay." description="One clip, full width. Replace it in content/media.ts under videos.gameDemo." />
+        <SectionHeading index="02" eyebrow="Footage" title="Gameplay." description={gamePageCopy.footageDescription} />
         <span id="footage-title" className="sr-only">Gameplay footage</span>
         <Reveal className="mt-14">
           <VideoPlayer {...media.videos.gameDemo} aspect="21/9" label="game / demo" index="01" className="max-md:aspect-video" />
@@ -108,7 +112,7 @@ export default function GameDevelopmentPage() {
 
       {/* Game projects */}
       <section className="wrap py-24 md:py-36" aria-labelledby="games-title">
-        <SectionHeading index="04" eyebrow="Game projects" title="The games." description="Every entry here is edited in content/projects.ts." />
+        <SectionHeading index="04" eyebrow="Game projects" title="The games." description={gamePageCopy.projectsDescription} />
         <span id="games-title" className="sr-only">Game projects</span>
         <div className="mt-14 grid gap-10 md:grid-cols-2 md:gap-8">
           {games.map((p, i) => (
@@ -125,9 +129,11 @@ export default function GameDevelopmentPage() {
           </div>
           <div className="md:col-span-8">
             <h2 id="next-title" className="font-body text-2xl sm:text-3xl md:text-5xl font-black tracking-tight">Still building.</h2>
-            <p className="mt-6 max-w-xl text-fog">
-              New games and prototypes get added as they&apos;re playable — not before. If you want to talk about any of it, the door is open.
-            </p>
+            <TText
+              en={gamePageCopy.nextBody.en}
+              fa={gamePageCopy.nextBody.fa}
+              className="mt-6 max-w-xl text-fog"
+            />
             <div className="mt-10 flex flex-wrap gap-4">
               <Button href="/projects" magnetic>All projects</Button>
               <Button href="/contact" variant="ghost">Get in touch</Button>

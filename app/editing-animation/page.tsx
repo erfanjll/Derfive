@@ -8,6 +8,8 @@ import { Button } from "@/components/ui/Button";
 import { VideoPlayer } from "@/components/media/VideoPlayer";
 import { BeforeAfter } from "@/components/media/BeforeAfter";
 import { ProjectCard } from "@/components/projects/ProjectCard";
+import { TText } from "@/components/ui/TText";
+import { motionPageCopy } from "@/content/i18n";
 
 export const metadata = pageMeta({
   title: "Editing & Animation",
@@ -38,10 +40,11 @@ export default function EditingAnimationPage() {
           className="font-body text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-tight tracking-tight text-bone"
         />
         <Reveal delay={0.3} className="mt-10 grid gap-8 md:grid-cols-12">
-          <p className="text-lg leading-relaxed text-fog md:col-span-7 md:text-xl">
-            I&apos;m early in editing and animation and this page says so on purpose. It&apos;s the part of my work that changes fastest —
-            so rather than wait until it&apos;s polished, it goes up as it improves.
-          </p>
+          <TText
+            en={motionPageCopy.intro.en}
+            fa={motionPageCopy.intro.fa}
+            className="text-lg leading-relaxed text-fog md:col-span-7 md:text-xl"
+          />
           <div className="md:col-span-4 md:col-start-9">
             <dl className="grid grid-cols-2 gap-4 border-l border-line pl-6">
               <div><dt className="label-mono">Editing</dt><dd className="mt-1 font-body font-black">Beginner</dd></div>
@@ -55,7 +58,7 @@ export default function EditingAnimationPage() {
       {/* Showcase grid */}
       <section className="border-y border-line bg-coal py-24 md:py-36" aria-labelledby="reel-title">
         <div className="wrap">
-          <SectionHeading index="01" eyebrow="Showcase" title="Clips." description="Four slots, two formats. Swap the files in content/media.ts — the layout stays the same." />
+          <SectionHeading index="01" eyebrow="Showcase" title="Clips." description={motionPageCopy.showcaseDescription} />
           <span id="reel-title" className="sr-only">Showcase</span>
           <div className="mt-14 grid gap-6 md:grid-cols-12 md:gap-8">
             <Reveal className="md:col-span-8">
@@ -76,7 +79,7 @@ export default function EditingAnimationPage() {
 
       {/* Before / after */}
       <section className="wrap py-24 md:py-36" aria-labelledby="ba-title">
-        <SectionHeading index="02" eyebrow="Editing" title="Before / after." description="Drag the handle. Replace the two images in content/media.ts under images.before and images.after." />
+        <SectionHeading index="02" eyebrow="Editing" title="Before / after." description={motionPageCopy.beforeAfterDescription} />
         <span id="ba-title" className="sr-only">Before and after comparison</span>
         <Reveal className="mt-14">
           <BeforeAfter before={media.images.before} after={media.images.after} />
@@ -93,7 +96,11 @@ export default function EditingAnimationPage() {
               <Reveal key={step.title} as="li" delay={i * 0.08} className="relative glow-border rounded-sm border border-line bg-graphite/60 backdrop-blur-md p-7">
                 <span className="font-mono text-xs text-signal">0{i + 1}</span>
                 <h3 className="mt-6 font-body text-xl sm:text-2xl font-black tracking-tight">{step.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-fog">{step.body}</p>
+                <TText
+                  en={step.body}
+                  fa={motionPageCopy.approachBodies[step.title] ?? step.body}
+                  className="mt-3 text-sm leading-relaxed text-fog"
+                />
               </Reveal>
             ))}
           </ol>
@@ -112,7 +119,11 @@ export default function EditingAnimationPage() {
           ))}
         </div>
         <Reveal className="mt-20 flex flex-col gap-6 border-t border-line pt-10 md:flex-row md:items-end md:justify-between">
-          <p className="max-w-md text-fog">More pieces get added here as they&apos;re finished. The bar is &quot;would I show this to someone&quot; — not perfection.</p>
+          <TText
+            en={motionPageCopy.moreBody.en}
+            fa={motionPageCopy.moreBody.fa}
+            className="max-w-md text-fog"
+          />
           <Button href="/projects" variant="ghost" magnetic>All projects</Button>
         </Reveal>
       </section>

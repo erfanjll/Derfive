@@ -4,6 +4,8 @@ import { TextReveal } from "@/components/ui/TextReveal";
 import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
 import { Timeline } from "@/components/journey/Timeline";
+import { TText } from "@/components/ui/TText";
+import { journeyPageIntro } from "@/content/i18n";
 
 export const metadata = pageMeta({
   title: "Journey",
@@ -25,9 +27,11 @@ export default function JourneyPage() {
           className="font-body text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-tight tracking-tight text-bone"
         />
         <Reveal delay={0.3} className="mt-8 max-w-xl">
-          <p className="text-fog md:text-lg">
-            No dates yet — on purpose. The order is real; the calendar gets filled in later.
-          </p>
+          <TText
+            en={journeyPageIntro.en}
+            fa={journeyPageIntro.fa}
+            className="text-fog md:text-lg"
+          />
         </Reveal>
       </section>
 

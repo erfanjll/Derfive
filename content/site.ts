@@ -37,8 +37,7 @@ export const site = {
   ],
 
   contact: {
-    // ▼ Put your real email between the quotes when you're ready, e.g. "hello@derfive.com"
-    email: "",
+    email: "Erfanjalaliaghchay@gmail.com",
     availability:
       "Open to collaborations, game jams, and any interesting conversation about games or motion.",
   },
@@ -46,6 +45,7 @@ export const site = {
   // ▼ Paste the full link (starting with https://) between the quotes.
   //   Empty links are shown as "coming soon" and are not clickable.
   socials: [
+    { label: "Telegram", href: "https://t.me/erfanjll" },
     { label: "GitHub", href: "" },
     { label: "Instagram", href: "" },
     { label: "LinkedIn", href: "" },

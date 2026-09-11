@@ -20,7 +20,7 @@ export function Button({ href, children, variant = "primary", size = "md", magne
     "group relative inline-flex items-center gap-3 rounded-full font-mono uppercase tracking-[0.14em] transition-colors duration-300",
     "disabled:cursor-not-allowed disabled:opacity-50",
     size === "md" ? "px-5 py-3 text-xs" : "px-7 py-4 text-sm",
-    variant === "primary" ? "bg-signal text-ink hover:bg-bone" : "border border-line text-bone hover:border-signal hover:text-signal",
+    variant === "primary" ? "bg-signal text-ink btn-sheen hover:bg-bone" : "border border-line text-bone hover:border-signal hover:text-signal",
     className,
   );
 

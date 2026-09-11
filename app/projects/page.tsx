@@ -3,6 +3,8 @@ import { projects } from "@/content/projects";
 import { TextReveal } from "@/components/ui/TextReveal";
 import { Reveal } from "@/components/ui/Reveal";
 import { ProjectGrid } from "@/components/projects/ProjectGrid";
+import { TText } from "@/components/ui/TText";
+import { projectsPageIntro } from "@/content/i18n";
 
 export const metadata = pageMeta({
   title: "Projects",
@@ -24,10 +26,11 @@ export default function ProjectsPage() {
           className="font-body text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-tight tracking-tight text-bone"
         />
         <Reveal delay={0.3} className="mt-8 max-w-xl">
-          <p className="text-fog md:text-lg">
-            Everything in one place. Slots marked <span className="font-mono text-xs uppercase tracking-widest text-signal">placeholder</span>{" "}
-            are waiting for real work to replace them.
-          </p>
+          <TText
+            en={projectsPageIntro.en}
+            fa={projectsPageIntro.fa}
+            className="text-fog md:text-lg"
+          />
         </Reveal>
       </section>
 

@@ -31,6 +31,15 @@
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 
   --color-ember: #7fe0a8;
+  /* Cold cinematic counter-accent — used ONLY in atmosphere layers, never
+     on interactive elements, so the lime signal stays the sole hero color. */
+  --color-halo: #7cc5ff;
+}
+
+/* Separator bloom: the faint accent flare inside hairline rules.
+   Dark = lime; light mode re-tunes it to olive (see Light Mode block). */
+:root {
+  --rule-bloom: rgba(200, 245, 66, 0.2);
 }
 
 /* ---------- Base ---------- */
@@ -49,6 +58,25 @@ body {
   width: 100%;
   overflow-x: clip;
   font-feature-settings: "ss01", "cv11";
+  /* Cinematic key light: one soft signal bloom above the fold + a cold
+     counter-wash high right. Painted on the body background, so it sits
+     behind every section, costs nothing, and scrolls away naturally. */
+  background-image:
+    radial-gradient(1100px 520px at 50% -12%, rgba(200, 245, 66, 0.055), transparent 65%),
+    radial-gradient(900px 480px at 88% -6%, rgba(124, 197, 255, 0.04), transparent 70%);
+  background-repeat: no-repeat;
+}
+
+html.light body {
+  background-image:
+    radial-gradient(1100px 520px at 50% -12%, rgba(203, 178, 116, 0.14), transparent 65%),
+    radial-gradient(900px 480px at 88% -6%, rgba(147, 178, 214, 0.08), transparent 70%);
+}
+
+/* Display headings wrap like editorial typography instead of leaving
+   orphan words on their own line. */
+h1, h2, h3 {
+  text-wrap: balance;
 }
 
 /* Belt-and-braces: nothing inside the page container may push the mobile
@@ -161,11 +189,13 @@ html[data-cursor="custom"] textarea {
   isolation: isolate;
   overflow: hidden;
 }
-/* Two borderless, fully-blurred circular glows instead of a single hard-edged
-   rectangular gradient box — this is what used to show up as a boxy green
-   haze artifact in the lower-left of the home sections. Each glow is a round
-   shape blurred well past its own radius, so no straight edge is ever visible,
-   no matter how it's cropped by the section's overflow-hidden. */
+/* Three-hue cinematic mesh, painted inside two fully-blurred circular
+   pseudo-elements (never a hard-edged gradient box — each shape is blurred
+   well past its own radius so no straight edge is ever visible).
+   ::before = signal key light upper-left + ember core;
+   ::after  = cold halo counter-wash lower-right + a whisper of lime.
+   Both drift almost imperceptibly (36–44s alternate) so sections feel
+   alive without ever pulling focus. */
 .ambient-glow::before,
 .ambient-glow::after {
   content: "";
@@ -178,41 +208,67 @@ html[data-cursor="custom"] textarea {
   will-change: transform;
 }
 .ambient-glow::before {
-  top: -10%;
-  left: -10%;
-  width: 40rem;
-  height: 40rem;
-  background: radial-gradient(circle, rgba(200, 245, 66, 0.45), transparent 70%);
+  top: -12%;
+  left: -12%;
+  width: 44rem;
+  height: 44rem;
+  background:
+    radial-gradient(circle, rgba(200, 245, 66, 0.5), transparent 65%),
+    radial-gradient(circle at 60% 70%, rgba(127, 224, 168, 0.28), transparent 70%);
+  animation: glow-drift 36s ease-in-out infinite alternate;
 }
 .ambient-glow::after {
-  bottom: -15%;
-  right: -10%;
-  width: 36rem;
-  height: 36rem;
-  background: radial-gradient(circle, rgba(127, 224, 168, 0.35), transparent 70%);
+  bottom: -16%;
+  right: -12%;
+  width: 40rem;
+  height: 40rem;
+  background:
+    radial-gradient(circle, rgba(124, 197, 255, 0.22), transparent 68%),
+    radial-gradient(circle at 30% 30%, rgba(200, 245, 66, 0.2), transparent 70%);
+  animation: glow-drift 44s ease-in-out infinite alternate-reverse;
+}
+@keyframes glow-drift {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to { transform: translate3d(4%, 3%, 0) scale(1.08); }
 }
 html.light .ambient-glow::before {
-  background: radial-gradient(circle, rgba(200, 245, 66, 0.55), transparent 70%);
+  background:
+    radial-gradient(circle, rgba(174, 148, 82, 0.2), transparent 65%),
+    radial-gradient(circle at 60% 70%, rgba(134, 168, 42, 0.12), transparent 70%);
 }
 html.light .ambient-glow::after {
-  background: radial-gradient(circle, rgba(127, 224, 168, 0.4), transparent 70%);
+  background:
+    radial-gradient(circle, rgba(124, 158, 190, 0.14), transparent 68%),
+    radial-gradient(circle at 30% 30%, rgba(174, 148, 82, 0.1), transparent 70%);
 }
 
 @utility glass {
-  background-color: color-mix(in oklab, var(--color-coal) 60%, transparent);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: color-mix(in oklab, var(--color-coal) 62%, transparent);
+  backdrop-filter: blur(24px) saturate(1.15);
+  -webkit-backdrop-filter: blur(24px) saturate(1.15);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 24px 60px -32px rgba(0, 0, 0, 0.7);
 }
 
 @utility glow-border {
-  transition: border-color 0.4s var(--ease-out-expo), box-shadow 0.4s var(--ease-out-expo), transform 0.4s var(--ease-out-expo);
+  transition: border-color 0.4s var(--ease-out-expo), box-shadow 0.5s var(--ease-out-expo), transform 0.4s var(--ease-out-expo);
   transform: translate3d(0, 0, 0);
   will-change: transform, box-shadow;
+  /* Resting: a whisper of a top-edge highlight (glass bead) over a deep,
+     tight drop — the card reads as a physical slab of obsidian. */
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 18px 50px -38px rgba(0, 0, 0, 0.9);
 }
 .glow-border:hover {
-  border-color: rgba(200, 245, 66, 0.5);
-  box-shadow: 0 0 30px rgba(200, 245, 66, 0.12);
+  border-color: rgba(200, 245, 66, 0.45);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 0 0 1px rgba(200, 245, 66, 0.14),
+    0 24px 60px -30px rgba(200, 245, 66, 0.16),
+    0 0 44px rgba(200, 245, 66, 0.07);
   transform: translate3d(0, -2px, 0);
 }
 
@@ -224,64 +280,161 @@ html.light .ambient-glow::after {
   50% { box-shadow: 0 0 16px rgba(200, 245, 66, 0.35); }
 }
 
+/* ---------- Hairline rules with a signal bloom ----------
+   Section separators stop being flat 1px lines: the hairline fades out at
+   both edges and carries a faint accent flare at its center. Pure CSS on the
+   existing border classes — no markup changes; the flat border remains as
+   the fallback wherever the gradient is transparent. */
+section.border-t.border-line,
+section.border-y.border-line,
+footer.border-t.border-line {
+  border-image: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-line) 18%,
+    var(--rule-bloom) 50%,
+    var(--color-line) 82%,
+    transparent
+  ) 1;
+}
+
+/* ---------- Tactile badge chip ----------
+   For status/tag markers floating over media and labels: inset glass, a
+   hairline highlight and a rotated signal node. Deliberately ink-on-media
+   in BOTH themes (same reasoning as the mobile drawer) so it reads over
+   any imagery. */
+.badge-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.65rem;
+  border-radius: 2px;
+  border: 1px solid rgba(200, 245, 66, 0.4);
+  background: rgba(5, 5, 5, 0.62);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.02),
+    0 6px 18px -8px rgba(0, 0, 0, 0.55);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-signal);
+}
+.badge-chip::before {
+  content: "";
+  width: 4px;
+  height: 4px;
+  flex-shrink: 0;
+  transform: rotate(45deg);
+  background: var(--color-signal);
+  box-shadow: 0 0 8px rgba(200, 245, 66, 0.8);
+}
+
+/* ---------- Discipline voices ----------
+   Game development = retro-tech pixel voice: squared corners, machine-tight
+   tracking (JetBrains fallback keeps it legible at 10px).
+   Motion = kinetic grotesk voice: sleek, wide-tracked, cinematic.
+   Opt-in via [data-discipline]; container styling stays in markup. */
+[data-discipline="game"] {
+  font-family: var(--font-pixel), var(--font-jetbrains), ui-monospace, monospace;
+  letter-spacing: 0.22em;
+}
+[data-discipline="motion"] {
+  font-family: var(--font-grotesk), var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.34em;
+  margin-inline-end: -0.34em; /* optical: swallow the trailing tracking */
+}
+
+/* ---------- Primary button sheen ----------
+   A single diagonal light sweep crossing the pill on hover. `overflow:
+   hidden` + the pill's border-radius contain it perfectly; the base state
+   parks the highlight off-canvas. */
+.btn-sheen {
+  overflow: hidden;
+}
+.btn-sheen::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(105deg, transparent 42%, rgba(255, 255, 255, 0.45) 50%, transparent 58%);
+  transform: translateX(-130%);
+  transition: transform 0.8s var(--ease-out-expo);
+  pointer-events: none;
+}
+.btn-sheen:hover::after {
+  transform: translateX(130%);
+}
+
 /* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .scan-line, .blink, .pulse-glow { animation: none; }
+  .ambient-glow::before,
+  .ambient-glow::after { animation: none; }
+  .btn-sheen::after { display: none; }
   .grain::before { display: none; }
   .glow-border:hover { transform: none; }
 }
 
-/* ---------- Light Mode Overrides ---------- */
+/* ---------- Light Mode Overrides (gallery-grade) ----------
+   Warm alabaster paper instead of sterile white, warm charcoal ink instead
+   of cool slate — an architectural, tactile paper tone with olive accents.
+   The background longhands are used deliberately so the key-light
+   background-image on body survives. */
 html.light {
-  --color-ink: #f8f8fa;
-  --color-coal: #ffffff;
-  --color-graphite: #f0f0f3;
-  --color-ash: #e4e4e7;
-  --color-line: #d4d4d8;
-  --color-mist: #71717a;
-  --color-fog: #52525b;
-  --color-bone: #09090b;
-  background: #f8f8fa !important;
-  color: #09090b !important;
+  --color-ink: #f5f3ec;
+  --color-coal: #fbfaf5;
+  --color-graphite: #edeae0;
+  --color-ash: #e4dfd1;
+  --color-line: #d8d2c0;
+  --color-mist: #7a7a6e;
+  --color-fog: #45483e;
+  --color-bone: #22251e;
+  --rule-bloom: rgba(109, 140, 30, 0.3);
+  background-color: #f5f3ec !important;
+  color: #22251e !important;
 }
 
 html.light body {
-  background: #f8f8fa !important;
-  color: #09090b !important;
+  background-color: #f5f3ec !important;
+  color: #22251e !important;
 }
 
 html.light header {
-  background: rgba(248, 248, 250, 0.85) !important;
-  border-bottom-color: rgba(0, 0, 0, 0.08) !important;
+  background: rgba(245, 243, 236, 0.8) !important;
+  border-bottom-color: rgba(34, 37, 30, 0.08) !important;
 }
 
 html.light h1,
 html.light h2,
 html.light h3,
 html.light .text-white {
-  color: #09090b !important;
+  color: #22251e !important;
 }
 
 html.light .text-zinc-100,
 html.light .text-zinc-200 {
-  color: #18181b !important;
+  color: #22251e !important;
 }
 
 html.light .text-zinc-300,
 html.light .text-zinc-400 {
-  color: #52525b !important;
+  color: #4c4f43 !important;
 }
 
 html.light .border-white\/10,
 html.light .border-white\/20,
 html.light .border-white\/5 {
-  border-color: rgba(0, 0, 0, 0.12) !important;
+  border-color: rgba(34, 37, 30, 0.12) !important;
 }
 
 html.light .bg-white\/5,
 html.light .bg-black\/40 {
-  background: rgba(0, 0, 0, 0.04) !important;
+  background: rgba(34, 37, 30, 0.04) !important;
 }
 
 html.light .grain::before {
@@ -293,16 +446,86 @@ html.light .grain::before {
    this overrides any hover:text-white utility left on nav links. */
 html.light nav a,
 html.light [data-nav-link] {
-  color: #52525b !important;
+  color: #5c5f52 !important;
 }
 html.light nav a:hover,
 html.light [data-nav-link]:hover {
-  color: #09090b !important;
+  color: #22251e !important;
 }
 html.light nav a[data-active="true"],
 html.light [data-nav-link][data-active="true"] {
   color: var(--color-signal-dim) !important;
   font-weight: 700;
+}
+
+/* The mobile drawer keeps its dark surface in light mode — its links must
+   stay light, so exempt them from the cream-mode link overrides above. */
+html.light #mobile-nav-drawer a {
+  color: #e5e7eb !important;
+}
+html.light #mobile-nav-drawer a:hover {
+  color: #f9fafb !important;
+}
+html.light #mobile-nav-drawer a[data-active="true"] {
+  color: #bef264 !important;
+}
+
+/* Neon lime on cream is unreadable — darken text and border accents to olive. */
+html.light .text-signal {
+  color: #4d7c0f !important;
+}
+html.light .border-signal,
+html.light .border-signal\/50 {
+  border-color: rgba(77, 124, 15, 0.55) !important;
+}
+
+/* Primary (lime) buttons: dark ink on the lime surface; on hover the surface
+   flips to dark bone, so the ink flips light to stay legible. */
+html.light .bg-signal {
+  color: #1c2608;
+}
+html.light .bg-signal:hover {
+  color: #f7f6f2;
+}
+html.light .border-signal.text-ink {
+  color: #1c2608;
+}
+
+/* Premium depth: gallery-grade diffused shadows at rest (glass-bead top
+   highlight + soft ambient drop), olive bloom on hover, olive selection/
+   focus — all light-mode only, dark mode untouched. */
+html.light .glow-border {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    0 1px 2px rgba(40, 42, 35, 0.05),
+    0 16px 40px -24px rgba(40, 42, 35, 0.18);
+}
+html.light .glow-border:hover {
+  border-color: rgba(134, 168, 42, 0.45);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.65),
+    0 0 0 1px rgba(134, 168, 42, 0.12),
+    0 20px 44px -24px rgba(109, 140, 30, 0.28);
+}
+html.light .glass {
+  border-color: rgba(34, 37, 30, 0.08);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    0 20px 50px -30px rgba(40, 42, 35, 0.25);
+}
+html.light :focus-visible {
+  outline-color: var(--color-signal-dim);
+}
+html.light ::selection {
+  color: #1c2608;
+}
+
+/* Scrollbar thumb: lime is washed out on cream — go olive. */
+html.light ::-webkit-scrollbar-thumb {
+  background: var(--color-signal-dim);
+}
+html.light ::-webkit-scrollbar-thumb:hover {
+  background: #6f8c1e;
 }
 
 /* Mobile nav drawer: lock page scroll behind it without causing layout shift. */
@@ -311,40 +534,27 @@ html.nav-open body {
   overflow: hidden;
 }
 
-/* ---------- Persian (FA) mode ----------
-   The LanguageContext flips <html lang="fa" dir="rtl"> after mount (and a
-   pre-hydration script applies it before first paint). Here we swap the
-   display/body/mono font stacks to Vazirmatn and neutralise letter-spacing,
-   which must never be applied to connected Arabic script. */
-html[lang="fa"] {
-  --font-display: var(--font-vazir), Tahoma, "Segoe UI", sans-serif;
-  --font-body: var(--font-vazir), Tahoma, "Segoe UI", sans-serif;
-  --font-mono: var(--font-vazir), Tahoma, monospace;
-}
-
-html[lang="fa"] body {
-  font-family: var(--font-vazir), Tahoma, sans-serif;
-}
-
-html[lang="fa"] body,
-html[lang="fa"] h1,
-html[lang="fa"] h2,
-html[lang="fa"] h3,
-html[lang="fa"] h4,
-html[lang="fa"] p,
-html[lang="fa"] a,
-html[lang="fa"] button,
-html[lang="fa"] span,
-html[lang="fa"] li,
-html[lang="fa"] input,
-html[lang="fa"] textarea {
+/* ---------- Persian text islands (FA mode) ----------
+   The language system is modular: the document ALWAYS stays lang="en"
+   dir="ltr" (custom cursor + pointer math stay intact), and Persian is
+   applied ONLY to long-form paragraphs through <TText>, which sets
+   dir="rtl" + lang="fa" + this font class on the paragraph element. */
+.fa-text {
+  font-family: var(--font-vazir), Tahoma, "Segoe UI", sans-serif;
+  font-feature-settings: normal;
   letter-spacing: 0 !important;
   word-spacing: normal;
+  line-height: 1.9;
 }
 
-/* Keep the giant brand title Latin even in FA mode — "DERFIVE" is a wordmark. */
-html[lang="fa"] [data-latin] {
-  font-family: var(--font-manrope), GeistSans, ui-sans-serif, system-ui, sans-serif;
+/* ---------- Thematic discipline fonts ----------
+   Pixel/retro voice for game development, sleek kinetic voice for motion.
+   Unlayered classes so they beat any layered font-* utility when combined. */
+.font-game {
+  font-family: var(--font-pixel), var(--font-jetbrains), ui-monospace, monospace;
+}
+.font-motion {
+  font-family: var(--font-grotesk), var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
 }
 
 /* ---------- Custom Portfolio Scrollbar (neon-lime) ---------- */

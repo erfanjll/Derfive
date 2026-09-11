@@ -39,7 +39,10 @@ export function MediaImage({ src, alt, aspect = "16/9", label, index, sizes = "(
         className={cn("object-cover", hoverZoom && "transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:scale-[1.04]")}
       />
       {label && (
-        <figcaption className="pointer-events-none absolute left-4 top-4 rounded-sm bg-ink/70 px-2 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-bone backdrop-blur-sm">
+        <figcaption
+          data-discipline={label.toLowerCase().includes("game") ? "game" : "motion"}
+          className="pointer-events-none absolute left-4 top-4 rounded-sm border border-white/10 bg-ink/70 px-2 py-1 text-[10px] uppercase text-bone backdrop-blur-sm"
+        >
           {label}
         </figcaption>
       )}

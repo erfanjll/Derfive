@@ -9,6 +9,8 @@ import { TextReveal } from "@/components/ui/TextReveal";
 import { Button } from "@/components/ui/Button";
 import { VideoPlayer } from "@/components/media/VideoPlayer";
 import { MediaImage } from "@/components/media/MediaImage";
+import { TText } from "@/components/ui/TText";
+import { projectDescriptions, detailComingSoon } from "@/content/i18n";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -39,6 +41,8 @@ export default async function ProjectPage({ params }: Params) {
   const next = getNextProject(project.slug);
   const label = categoryLabels[project.category];
   const index = String(projects.findIndex((p) => p.slug === project.slug) + 1).padStart(2, "0");
+  // Long-form copy is bilingual; titles/chrome stay English (see content/i18n.ts rules).
+  const description = projectDescriptions[project.slug] ?? { en: project.description, fa: project.description };
 
   const details: Array<{ label: string; value: React.ReactNode }> = [
     { label: "Category", value: project.subCategory ?? label },
@@ -70,7 +74,7 @@ export default async function ProjectPage({ params }: Params) {
         </Reveal>
         <p className="label-mono mb-6 mt-12">
           <span className="text-signal">{index}</span> — {label}
-          {project.status === "placeholder" && <span className="ml-3 rounded-sm border border-signal/50 px-2 py-0.5 text-signal">placeholder</span>}
+          {project.status === "placeholder" && <span className="badge-chip ml-3 align-middle">placeholder</span>}
         </p>
         <TextReveal
           as="h1"
@@ -79,7 +83,11 @@ export default async function ProjectPage({ params }: Params) {
           className="font-body text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-tight tracking-tight text-bone"
         />
         <Reveal delay={0.3} className="mt-8 max-w-2xl">
-          <p className="text-lg leading-relaxed text-fog md:text-xl">{project.description}</p>
+          <TText
+            en={description.en}
+            fa={description.fa}
+            className="text-lg leading-relaxed text-fog md:text-xl"
+          />
         </Reveal>
       </section>
 
@@ -121,9 +129,11 @@ export default async function ProjectPage({ params }: Params) {
           ) : (
             <div className="dot-grid rounded-sm border border-dashed border-line p-8">
               <p className="font-mono text-xs uppercase tracking-[0.14em] text-mist">Details coming soon</p>
-              <p className="mt-3 max-w-md text-sm text-fog">
-                The full write-up for this project hasn&apos;t been added yet. It&apos;ll cover what it is, how it was made, and what was learned.
-              </p>
+              <TText
+                en={detailComingSoon.en}
+                fa={detailComingSoon.fa}
+                className="mt-3 max-w-md text-sm text-fog"
+              />
             </div>
           )}
         </Reveal>

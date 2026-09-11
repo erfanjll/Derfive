@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
+import { TText } from "@/components/ui/TText";
+import { notFoundCopy } from "@/content/i18n";
 
 export default function NotFound() {
   return (
@@ -12,7 +14,7 @@ export default function NotFound() {
         <br />
         <span className="outline-text">here.</span>
       </h1>
-      <p className="mt-8 max-w-md text-fog">This page doesn&apos;t exist — or hasn&apos;t been built yet. Either way, the way back is below.</p>
+      <TText en={notFoundCopy.en} fa={notFoundCopy.fa} className="mt-8 max-w-md text-fog" />
       <div className="mt-10 flex flex-wrap gap-4">
         <Button href="/" magnetic>Back home</Button>
         <Link href="/projects" className="self-center font-mono text-xs uppercase tracking-[0.16em] text-mist hover:text-signal">

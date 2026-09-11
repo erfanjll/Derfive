@@ -4,6 +4,8 @@ import { TextReveal } from "@/components/ui/TextReveal";
 import { Reveal } from "@/components/ui/Reveal";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { ContactBackdrop } from "@/components/contact/ContactBackdrop";
+import { TText } from "@/components/ui/TText";
+import { contactAvailability } from "@/content/i18n";
 
 export const metadata = pageMeta({
   title: "Contact",
@@ -12,7 +14,7 @@ export const metadata = pageMeta({
 });
 
 export default function ContactPage() {
-  const { email, availability } = site.contact;
+  const { email } = site.contact;
 
   return (
     <section className="relative overflow-hidden pb-28 pt-32 md:pb-40 md:pt-44">
@@ -33,7 +35,11 @@ export default function ContactPage() {
           {/* Direct channels */}
           <div className="space-y-12 md:col-span-5">
             <Reveal delay={0.2}>
-              <p className="max-w-sm text-lg leading-relaxed text-fog">{availability}</p>
+              <TText
+                en={contactAvailability.en}
+                fa={contactAvailability.fa}
+                className="max-w-sm text-lg leading-relaxed text-fog"
+              />
             </Reveal>
 
             <Reveal delay={0.28}>

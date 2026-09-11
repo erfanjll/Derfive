@@ -4,6 +4,8 @@ import { about } from "@/content/about";
 import { TextReveal } from "@/components/ui/TextReveal";
 import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
+import { TText } from "@/components/ui/TText";
+import { aboutParagraphsFa, aboutPrinciplesFa } from "@/content/i18n";
 
 export const metadata = pageMeta({
   title: "About",
@@ -34,7 +36,13 @@ export default function AboutPage() {
           <div className="label-mono md:col-span-3">Background</div>
           <div className="space-y-6 text-base leading-relaxed text-fog md:col-span-9 md:text-lg">
             {about.paragraphs.map((p, i) => (
-              <Reveal key={i} delay={i * 0.08} as="p">{p}</Reveal>
+              <Reveal key={i} delay={i * 0.08} as="div">
+                <TText
+                  en={p}
+                  fa={aboutParagraphsFa[i] ?? p}
+                  className="text-base leading-relaxed text-fog md:text-lg"
+                />
+              </Reveal>
             ))}
           </div>
         </div>
@@ -78,7 +86,11 @@ export default function AboutPage() {
               <Reveal key={p.title} as="li" delay={i * 0.08} className="glow-border rounded-sm border border-line bg-graphite/60 backdrop-blur-md p-7">
                 <span className="font-mono text-xs text-signal">0{i + 1}</span>
                 <h3 className="mt-6 font-body text-xl sm:text-2xl font-black tracking-tight text-bone">{p.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-fog">{p.body}</p>
+                <TText
+                  en={p.body}
+                  fa={aboutPrinciplesFa[p.title] ?? p.body}
+                  className="mt-3 text-sm leading-relaxed text-fog"
+                />
               </Reveal>
             ))}
           </ol>

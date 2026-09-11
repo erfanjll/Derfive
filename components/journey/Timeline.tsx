@@ -5,6 +5,8 @@ import { motion, useScroll, useSpring, useReducedMotion } from "motion/react";
 import { journey } from "@/content/journey";
 import { cn } from "@/lib/cn";
 import { Reveal } from "@/components/ui/Reveal";
+import { TText } from "@/components/ui/TText";
+import { journeyBodiesFa } from "@/content/i18n";
 
 /**
  * Scroll-driven timeline. A lime line fills as you scroll; each stage sits on
@@ -48,7 +50,11 @@ export function Timeline() {
                 {stage.period}
                 {stage.org ? ` · ${stage.org}` : ""}
               </p>
-              <p className={cn("mt-6 max-w-md text-base leading-relaxed text-fog", left && "md:ml-auto")}>{stage.body}</p>
+              <TText
+                en={stage.body}
+                fa={journeyBodiesFa[stage.id] ?? stage.body}
+                className={cn("mt-6 max-w-md text-base leading-relaxed text-fog", left && "md:ml-auto")}
+              />
             </Reveal>
 
             {/* Giant outlined index on the opposite side (desktop only) */}

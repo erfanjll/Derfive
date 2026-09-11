@@ -7,38 +7,33 @@ const STORAGE_KEY = "derfive-lang";
 
 interface LanguageContextValue {
   lang: Lang;
-  /** Convenience getter: given { en, fa }, returns the string for the active language. */
+  /** Convenience getter for { en, fa } pairs (long-form copy only). */
   t: (strings: { en: string; fa: string }) => string;
   toggleLang: () => void;
   setLang: (lang: Lang) => void;
 }
 
+/**
+ * Bilingual state (EN/FA).
+ *
+ * Deliberately does NOT touch <html lang/dir>: the document always stays
+ * lang="en" dir="ltr". Persian is scoped per-paragraph by <TText>, which
+ * keeps the custom cursor, pointer math and layout architecture intact.
+ */
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 
-function applyDocumentLang(lang: Lang) {
-  if (typeof document === "undefined") return;
-  document.documentElement.lang = lang === "fa" ? "fa" : "en";
-  document.documentElement.dir = lang === "fa" ? "rtl" : "ltr";
-}
-
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  // Default to English on the server and on first paint; the real, persisted
-  // choice (if any) is applied right after mount — same pattern as the theme toggle.
+  // English on the server and on first paint (so hydration is always clean);
+  // the persisted choice, if any, is restored right after mount.
   const [lang, setLangState] = useState<Lang>("en");
 
   useEffect(() => {
     const saved = window.localStorage.getItem(STORAGE_KEY);
-    if (saved === "fa" || saved === "en") {
-      setLangState(saved);
-      applyDocumentLang(saved);
-    } else {
-      applyDocumentLang("en");
-    }
+    if (saved === "fa" || saved === "en") setLangState(saved);
   }, []);
 
   const setLang = useCallback((next: Lang) => {
     setLangState(next);
-    applyDocumentLang(next);
     window.localStorage.setItem(STORAGE_KEY, next);
   }, []);
 
