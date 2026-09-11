@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Manrope, JetBrains_Mono, Vazirmatn, Pixelify_Sans, Space_Grotesk, Syne } from "next/font/google";
+import { Manrope, JetBrains_Mono, Vazirmatn, Syne, Share_Tech_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { site } from "@/content/site";
 import { cn } from "@/lib/cn";
@@ -15,14 +15,9 @@ const vazir = Vazirmatn({ subsets: ["arabic"], weight: ["400", "500", "600", "70
 // The site-wide display voice (Syne — see --font-display in globals.css):
 // crisp editorial display headings for Home / About / Journey / Contact.
 const syne = Syne({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"], variable: "--font-syne-src", display: "swap" });
-// Thematic discipline fonts: pixel/retro voice for game development,
-// sleek kinetic voice for motion graphics (see .font-game / .font-motion).
-// Discipline voices (Pixelify = retro-tech "game" voice, Space Grotesk =
-// kinetic "motion" voice). The next/font variables deliberately carry a
-// "-src" suffix: Tailwind's @theme/:root token namespace is also --font-*,
-// so a raw --font-pixel variable would collide with the --font-pixel CSS
-// token that backs the `font-pixel` utility (see globals.css).
-const pixel = Pixelify_Sans({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-pixel-src", display: "swap" });
+// Tech-monospace voice for game engine telemetry / CAD schematics:
+// sharp, high-tech, architectural — not chunky 8-bit arcade.
+const tech = Share_Tech_Mono({ subsets: ["latin"], weight: ["400", "700"], variable: "--font-tech-src", display: "swap" });
 const kinetic = Space_Grotesk({ subsets: ["latin"], weight: ["300", "400", "500", "600", "700"], variable: "--font-kinetic-src", display: "swap" });
 
 /**
@@ -62,7 +57,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" dir="ltr" suppressHydrationWarning className={cn(manrope.variable, jetbrains.variable, vazir.variable, syne.variable, pixel.variable, kinetic.variable, "grain")}>
+    <html lang="en" dir="ltr" suppressHydrationWarning className={cn(manrope.variable, jetbrains.variable, vazir.variable, syne.variable, tech.variable, kinetic.variable, "grain")}>
       <body id="top" className="bg-ink text-bone antialiased">
         <script dangerouslySetInnerHTML={{ __html: themeBootstrap }} />
         <Providers>
