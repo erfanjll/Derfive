@@ -14,8 +14,13 @@ const jetbrains = JetBrains_Mono({ subsets: ["latin"], weight: ["400", "500"], v
 const vazir = Vazirmatn({ subsets: ["arabic"], weight: ["400", "500", "600", "700", "800"], variable: "--font-vazir", display: "swap" });
 // Thematic discipline fonts: pixel/retro voice for game development,
 // sleek kinetic voice for motion graphics (see .font-game / .font-motion).
-const pixel = Pixelify_Sans({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-pixel", display: "swap" });
-const grotesk = Space_Grotesk({ subsets: ["latin"], weight: ["300", "400", "500", "600", "700"], variable: "--font-grotesk", display: "swap" });
+// Discipline voices (Pixelify = retro-tech "game" voice, Space Grotesk =
+// kinetic "motion" voice). The next/font variables deliberately carry a
+// "-src" suffix: Tailwind's @theme/:root token namespace is also --font-*,
+// so a raw --font-pixel variable would collide with the --font-pixel CSS
+// token that backs the `font-pixel` utility (see globals.css).
+const pixel = Pixelify_Sans({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-pixel-src", display: "swap" });
+const kinetic = Space_Grotesk({ subsets: ["latin"], weight: ["300", "400", "500", "600", "700"], variable: "--font-kinetic-src", display: "swap" });
 
 /**
  * Runs BEFORE React hydrates / first paint: restores the persisted theme
@@ -54,7 +59,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" dir="ltr" suppressHydrationWarning className={cn(manrope.variable, jetbrains.variable, vazir.variable, pixel.variable, grotesk.variable, "grain")}>
+    <html lang="en" dir="ltr" suppressHydrationWarning className={cn(manrope.variable, jetbrains.variable, vazir.variable, pixel.variable, kinetic.variable, "grain")}>
       <body id="top" className="bg-ink text-bone antialiased">
         <script dangerouslySetInnerHTML={{ __html: themeBootstrap }} />
         <Providers>

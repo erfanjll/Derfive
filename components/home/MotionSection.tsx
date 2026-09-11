@@ -27,6 +27,7 @@ export function MotionSection() {
       <SectionHeading
         index="02"
         eyebrow="Editing & animation"
+        eyebrowClassName="font-kinetic"
         title="Featured motion."
         description={motionSectionDescription}
       />
@@ -54,7 +55,7 @@ export function MotionSection() {
       </div>
 
       <Reveal className="mt-16">
-        <Button href="/editing-animation" variant="ghost" magnetic>Editing & animation</Button>
+        <Button href="/editing-animation" variant="ghost" magnetic><span className="font-kinetic">Editing & animation</span></Button>
       </Reveal>
     </section>
   );

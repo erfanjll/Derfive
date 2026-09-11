@@ -36,6 +36,23 @@
   --color-halo: #7cc5ff;
 }
 
+/* ---------- Discipline voice tokens (font-pixel / font-kinetic) ----------
+   Declared as plain :root vars + UNLAYERED classes (like .font-game below)
+   rather than @theme utilities, so they always beat the layered
+   `label-mono` / `font-*` utilities they're combined with — the theme change
+   is guaranteed visible. They resolve through the next/font variables
+   injected on <html> in layout.tsx (--font-pixel-src / --font-kinetic-src). */
+:root {
+  --font-pixel: var(--font-pixel-src), var(--font-jetbrains), ui-monospace, monospace;
+  --font-kinetic: var(--font-kinetic-src), var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+}
+.font-pixel {
+  font-family: var(--font-pixel);
+}
+.font-kinetic {
+  font-family: var(--font-kinetic);
+}
+
 /* Separator bloom: the faint accent flare inside hairline rules.
    Dark = lime; light mode re-tunes it to olive (see Light Mode block). */
 :root {
@@ -339,11 +356,11 @@ footer.border-t.border-line {
    Motion = kinetic grotesk voice: sleek, wide-tracked, cinematic.
    Opt-in via [data-discipline]; container styling stays in markup. */
 [data-discipline="game"] {
-  font-family: var(--font-pixel), var(--font-jetbrains), ui-monospace, monospace;
+  font-family: var(--font-pixel);
   letter-spacing: 0.22em;
 }
 [data-discipline="motion"] {
-  font-family: var(--font-grotesk), var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-kinetic);
   font-weight: 600;
   letter-spacing: 0.34em;
   margin-inline-end: -0.34em; /* optical: swallow the trailing tracking */
@@ -549,12 +566,13 @@ html.nav-open body {
 
 /* ---------- Thematic discipline fonts ----------
    Pixel/retro voice for game development, sleek kinetic voice for motion.
-   Unlayered classes so they beat any layered font-* utility when combined. */
+   Aliases over the tokens above so every naming convention works. Unlayered
+   classes so they beat any layered font-* utility when combined. */
 .font-game {
-  font-family: var(--font-pixel), var(--font-jetbrains), ui-monospace, monospace;
+  font-family: var(--font-pixel);
 }
 .font-motion {
-  font-family: var(--font-grotesk), var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-kinetic);
 }
 
 /* ---------- Custom Portfolio Scrollbar (neon-lime) ---------- */

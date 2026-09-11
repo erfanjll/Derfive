@@ -16,11 +16,19 @@ export function Footer() {
                 cleanly, and textLength + lengthAdjust keep it fluid at every
                 viewport width (the SVG scales like a block element). */}
             <svg
-              viewBox="0 0 620 150"
+              viewBox="0 0 780 150"
               role="img"
               aria-label={site.brand.toUpperCase()}
               className="block h-auto w-full select-none text-line"
             >
+              {/* ROOT CAUSE of the glitched "R": the old textLength="620" +
+                  lengthAdjust="spacingAndGlyphs" SQUEEZED THE GLYPH SHAPES
+                  themselves whenever the natural text ran wider than the
+                  target — the R's diagonal leg was compressed onto its bowl
+                  and appeared clipped/overlapping. The fix: a generous canvas
+                  (780) with lengthAdjust="spacing", so only the LETTER
+                  SPACING flexes to hit the target width and glyph geometry is
+                  never distorted — at any font, size or zoom. */}
               <text
                 x="0"
                 y="127"
@@ -32,8 +40,8 @@ export function Footer() {
                 strokeWidth="1.5"
                 strokeLinejoin="round"
                 strokeLinecap="round"
-                textLength="620"
-                lengthAdjust="spacingAndGlyphs"
+                textLength="740"
+                lengthAdjust="spacing"
               >
                 {site.brand.toUpperCase()}
               </text>

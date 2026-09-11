@@ -31,7 +31,7 @@ export function ProjectCard({ project, index, size = "regular" }: ProjectCardPro
       viewport={{ once: true, margin: "-8% 0px" }}
       transition={{ duration: 0.8, ease: EASE }}
       whileHover={{ y: -4 }}
-      className="group [transform:translate3d(0,0,0)] [will-change:transform]"
+      className="group rounded-sm border border-line/40 bg-graphite/40 p-3 transition-colors duration-300 hover:border-signal/30 md:p-4 [transform:translate3d(0,0,0)] [will-change:transform]"
     >
       <Link href={`/projects/${project.slug}`} className="block" data-cursor="view" aria-label={`${project.title} — ${label}`}>
         <div className="glow-border relative overflow-hidden rounded-sm border border-transparent">

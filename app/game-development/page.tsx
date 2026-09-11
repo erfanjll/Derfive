@@ -30,7 +30,7 @@ export default function GameDevelopmentPage() {
     <>
       {/* Header */}
       <section className="wrap pb-16 pt-32 md:pb-24 md:pt-44">
-        <p className="label-mono mb-8">
+        <p className="label-mono mb-8" data-discipline="game">
           <span className="text-signal">02</span> — Game development
         </p>
         <TextReveal
@@ -51,7 +51,7 @@ export default function GameDevelopmentPage() {
       {/* Studio & stack */}
       <section className="border-y border-line bg-coal py-24 md:py-36" aria-labelledby="stack-title">
         <div className="wrap">
-          <SectionHeading index="01" eyebrow="Studio & stack" title="One studio, one collaborator, a growing stack." />
+          <SectionHeading index="01" eyebrow="Studio & stack" title="One studio, one collaborator, a growing stack." eyebrowClassName="font-pixel" />
           <span id="stack-title" className="sr-only">Studio and stack</span>
           <div className="mt-16 grid gap-6 md:grid-cols-12">
             <Reveal className="glow-border rounded-sm border border-line bg-graphite/60 backdrop-blur-md p-7 md:col-span-6 md:p-9">
@@ -88,7 +88,7 @@ export default function GameDevelopmentPage() {
 
       {/* Footage */}
       <section className="wrap py-24 md:py-36" aria-labelledby="footage-title">
-        <SectionHeading index="02" eyebrow="Footage" title="Gameplay." description={gamePageCopy.footageDescription} />
+        <SectionHeading index="02" eyebrow="Footage" title="Gameplay." description={gamePageCopy.footageDescription} eyebrowClassName="font-pixel" />
         <span id="footage-title" className="sr-only">Gameplay footage</span>
         <Reveal className="mt-14">
           <VideoPlayer {...media.videos.gameDemo} aspect="21/9" label="game / demo" index="01" className="max-md:aspect-video" />
@@ -112,7 +112,7 @@ export default function GameDevelopmentPage() {
 
       {/* Game projects */}
       <section className="wrap py-24 md:py-36" aria-labelledby="games-title">
-        <SectionHeading index="04" eyebrow="Game projects" title="The games." description={gamePageCopy.projectsDescription} />
+        <SectionHeading index="04" eyebrow="Game projects" title="The games." description={gamePageCopy.projectsDescription} eyebrowClassName="font-pixel" />
         <span id="games-title" className="sr-only">Game projects</span>
         <div className="mt-14 grid gap-10 md:grid-cols-2 md:gap-8">
           {games.map((p, i) => (

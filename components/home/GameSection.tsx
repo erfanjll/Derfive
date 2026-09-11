@@ -20,12 +20,13 @@ export function GameSection() {
         <SectionHeading
           index="01"
           eyebrow="Game development"
+          eyebrowClassName="font-pixel"
           title="Featured games."
           description={gamesSectionDescription}
         />
         <span id="home-games" className="sr-only">Game development</span>
 
-        <div className="mt-16 grid gap-10 md:grid-cols-2 md:gap-8">
+        <div className="mt-12 grid gap-6 md:grid-cols-2">
           {games.map((p, i) => (
             <Reveal key={p.slug} delay={i * 0.1}>
               <ProjectCard project={p} index={i} size="large" />
@@ -34,7 +35,7 @@ export function GameSection() {
         </div>
 
         <Reveal className="mt-12 flex flex-wrap items-center gap-4">
-          <Button href="/game-development" magnetic>Game development</Button>
+          <Button href="/game-development" magnetic><span className="font-pixel">Game development</span></Button>
           <Button href="/projects" variant="ghost">All Projects</Button>
         </Reveal>
       </div>
