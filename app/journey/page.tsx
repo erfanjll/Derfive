@@ -1,11 +1,9 @@
 import { pageMeta } from "@/lib/metadata";
 import { site } from "@/content/site";
 import { TextReveal } from "@/components/ui/TextReveal";
-import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
 import { Timeline } from "@/components/journey/Timeline";
-import { TText } from "@/components/ui/TText";
-import { journeyPageIntro } from "@/content/i18n";
+import { SpotlightBackdrop } from "@/components/ui/SpotlightBackdrop";
 
 export const metadata = pageMeta({
   title: "Journey",
@@ -24,19 +22,17 @@ export default function JourneyPage() {
           as="h1"
           immediate
           text="Where it started, where it's going."
-          className="font-body text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-tight tracking-tight text-bone"
+          className="font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-tight tracking-tight text-bone"
         />
-        <Reveal delay={0.3} className="mt-8 max-w-xl">
-          <TText
-            en={journeyPageIntro.en}
-            fa={journeyPageIntro.fa}
-            className="text-fog md:text-lg"
-          />
-        </Reveal>
       </section>
 
       <section className="wrap pb-24 md:pb-36" aria-label="Timeline">
-        <Timeline />
+        <div className="relative overflow-hidden">
+          <SpotlightBackdrop />
+          <div className="relative">
+            <Timeline />
+          </div>
+        </div>
       </section>
 
       <section className="border-t border-line bg-coal py-24 md:py-32">

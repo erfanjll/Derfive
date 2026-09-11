@@ -26,7 +26,7 @@ export default function AboutPage() {
           as="h1"
           immediate
           text={about.intro}
-          className="font-body text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black leading-tight tracking-tight text-bone"
+          className="font-display text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black leading-tight tracking-tight text-bone"
         />
       </section>
 

@@ -56,12 +56,6 @@ export const journeyBodiesFa: Record<string, string> = {
   horizon: "توسعه مکانیک‌های تعاملی مقیاس‌پذیر بازی، تولیدات صوتی‌تصویری غنی‌تر و پیشبرد ورک‌فلوهای آرت فنی.",
 };
 
-/* ---------- Journey page ---------- */
-export const journeyPageIntro: Bilingual = {
-  en: "No dates yet — on purpose. The order is real; the calendar gets filled in later.",
-  fa: "فعلاً بدون تاریخ — عمداً. ترتیب واقعی است؛ تقویم بعداً تکمیل می‌شود.",
-};
-
 /* ---------- About page ---------- */
 export const aboutParagraphsFa: string[] = [
   "من عرفان جلالی هستم. در EMVP همراه با مبین کوهی بازی می‌سازم؛ جایی که بخش جالب ماجرا به‌ندرت ایده اول است و تقریباً همیشه تکراری است که بعد از آن می‌آید.",
@@ -89,10 +83,6 @@ export const gamePageCopy = {
     en: "A long two-person collaboration is its own kind of education — in scope, in disagreement, and in actually finishing.",
     fa: "یک همکاری بلندمدت دونفره خودش نوعی آموزش است — در تعیین دامنه، در اختلاف نظر، و در واقع تمام‌کردن کار.",
   },
-  footageDescription: {
-    en: "One clip, full width. Replace it in content/media.ts under videos.gameDemo.",
-    fa: "یک کلیپ، تمام‌عرض. فایل را در content/media.ts زیر videos.gameDemo جایگزین کنید.",
-  },
   projectsDescription: {
     en: "Every entry here is edited in content/projects.ts.",
     fa: "هر ورودی این بخش در content/projects.ts ویرایش می‌شود.",
@@ -108,10 +98,6 @@ export const motionPageCopy = {
   intro: {
     en: "I'm early in editing and animation and this page says so on purpose. It's the part of my work that changes fastest — so rather than wait until it's polished, it goes up as it improves.",
     fa: "در تدوین و انیمیشن تازه‌کارم و این صفحه آگاهانه همین را می‌گوید. این بخش از کارم سریع‌ترین تغییر را دارد — پس به‌جای صبر تا رسیدن به نسخه پولیش‌شده، همان‌طور که بهتر می‌شود منتشرش می‌کنم.",
-  },
-  showcaseDescription: {
-    en: "Four slots, two formats. Swap the files in content/media.ts — the layout stays the same.",
-    fa: "چهار جایگاه، دو قالب. فایل‌ها را در content/media.ts عوض کنید — چیدمان همان می‌ماند.",
   },
   beforeAfterDescription: {
     en: "Drag the handle. Replace the two images in content/media.ts under images.before and images.after.",

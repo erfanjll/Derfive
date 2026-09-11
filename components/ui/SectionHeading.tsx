@@ -30,7 +30,16 @@ export function SectionHeading({ index, eyebrow, title, description, as: Tag = "
       </Reveal>
       <div className={cn(align === "split" ? "md:col-span-9" : "md:col-span-12")}>
         <Reveal delay={0.05}>
-          <Tag className={cn("font-body text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-tight tracking-tight text-bone", titleClassName)}>
+          {/* Page themes can pass `tracking-*` and `font-*` utilities (e.g.
+              motion's wide 0.18em kinetic voice); when they do, drop the
+              default tight tracking / body font so the two never fight each
+              other in the cascade. */}
+          <Tag className={cn(
+            "text-2xl font-black leading-tight text-bone sm:text-4xl md:text-5xl lg:text-6xl",
+            !titleClassName?.includes("font-") && "font-body",
+            !titleClassName?.includes("tracking-") && "tracking-tight",
+            titleClassName,
+          )}>
             {title}
           </Tag>
         </Reveal>

@@ -4,6 +4,7 @@ import { TextReveal } from "@/components/ui/TextReveal";
 import { Reveal } from "@/components/ui/Reveal";
 import { ProjectGrid } from "@/components/projects/ProjectGrid";
 import { TText } from "@/components/ui/TText";
+import { SpotlightBackdrop } from "@/components/ui/SpotlightBackdrop";
 import { projectsPageIntro } from "@/content/i18n";
 
 export const metadata = pageMeta({
@@ -15,7 +16,8 @@ export const metadata = pageMeta({
 export default function ProjectsPage() {
   return (
     <>
-      <section className="wrap pb-16 pt-32 md:pb-20 md:pt-44">
+      <section className="wrap relative overflow-hidden pb-16 pt-32 md:pb-20 md:pt-44">
+        <SpotlightBackdrop />
         <p className="label-mono mb-8">
           <span className="text-signal">04</span> — Projects · {String(projects.length).padStart(2, "0")}
         </p>
@@ -23,7 +25,7 @@ export default function ProjectsPage() {
           as="h1"
           immediate
           text="Built, breaking, or about to exist."
-          className="font-body text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-tight tracking-tight text-bone"
+          className="font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-tight tracking-tight text-bone"
         />
         <Reveal delay={0.3} className="mt-8 max-w-xl">
           <TText

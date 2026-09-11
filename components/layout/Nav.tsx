@@ -144,7 +144,7 @@ export function Nav() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.25 }}
               onClick={() => setDrawerOpen(false)}
-              className="md:hidden fixed inset-0 top-[64px] z-40 bg-black/60 backdrop-blur-sm"
+              className="md:hidden fixed inset-0 top-[64px] z-40 bg-ink/60 backdrop-blur-sm"
               aria-hidden
             />
             <motion.nav
@@ -154,7 +154,7 @@ export function Nav() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ duration: 0.4, ease: EASE }}
-              className="md:hidden fixed right-0 top-[64px] z-50 flex h-[calc(100dvh-64px)] w-[min(85vw,340px)] flex-col justify-between overflow-y-auto border-l border-white/10 bg-zinc-950/95 px-6 py-8 backdrop-blur-xl"
+              className="md:hidden fixed right-0 top-[64px] z-50 flex h-[calc(100dvh-64px)] w-[min(85vw,340px)] flex-col justify-between overflow-y-auto border-l border-line bg-bg/95 px-6 py-8 text-ink backdrop-blur-2xl"
               aria-label="Mobile navigation"
             >
               <ul className="flex flex-col gap-1">
@@ -171,8 +171,8 @@ export function Nav() {
                       data-active={pathname === link.href}
                       className={`block py-3 font-mono text-lg tracking-widest transition-colors ${
                         pathname === link.href
-                          ? "text-lime-600 dark:text-lime-400 font-bold"
-                          : "text-zinc-600 hover:text-black dark:text-zinc-400 dark:hover:text-white"
+                          ? "font-bold text-signal"
+                          : "text-mist hover:text-bone"
                       }`}
                     >
                       {link.label}
@@ -181,20 +181,20 @@ export function Nav() {
                 ))}
               </ul>
 
-              <div className="flex flex-col gap-4 border-t border-white/10 pt-6">
+              <div className="flex flex-col gap-4 border-t border-line pt-6">
                 <button
                   onClick={toggleTheme}
-                  className="flex items-center justify-between rounded-full border border-white/20 px-4 py-3 text-xs font-mono tracking-widest text-zinc-200"
+                  className="flex items-center justify-between rounded-full border border-line px-4 py-3 text-xs font-mono tracking-widest text-bone transition-colors hover:border-signal hover:text-signal"
                 >
                   Theme
-                  <span className="text-lime-400">{isLight ? "Light" : "Dark"}</span>
+                  <span className="text-signal">{isLight ? "Light" : "Dark"}</span>
                 </button>
                 <button
                   onClick={toggleLang}
-                  className="flex items-center justify-between rounded-full border border-white/20 px-4 py-3 text-xs font-mono tracking-widest text-zinc-200"
+                  className="flex items-center justify-between rounded-full border border-line px-4 py-3 text-xs font-mono tracking-widest text-bone transition-colors hover:border-signal hover:text-signal"
                 >
                   Language
-                  <span className="text-lime-400">{lang === "en" ? "ENG" : "FA"}</span>
+                  <span className="text-signal">{lang === "en" ? "ENG" : "FA"}</span>
                 </button>
                 <Link
                   href="/contact"

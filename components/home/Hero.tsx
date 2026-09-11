@@ -6,6 +6,7 @@ import { motion } from "motion/react";
 import { site } from "@/content/site";
 import { heroBio, motto } from "@/content/i18n";
 import { TText } from "@/components/ui/TText";
+import { SpotlightBackdrop } from "@/components/ui/SpotlightBackdrop";
 
 const HeroCanvas = dynamic(
   () => import("@/components/three/HeroCanvas").then((mod) => mod.HeroCanvas),
@@ -16,6 +17,9 @@ export function Hero() {
 
   return (
     <section className="relative min-h-[74dvh] w-full flex flex-col justify-center gap-4 overflow-hidden px-4 sm:px-8 md:px-12 pt-20 pb-6">
+      {/* Shared dot matrix + pointer-following spotlight (see SpotlightBackdrop). */}
+      <SpotlightBackdrop />
+
       {/* هاله نوری پس‌زمینه — بدون لبه‌های چهارگوش */}
       <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-[500px] h-[500px] rounded-full bg-lime-400/10 blur-[140px] opacity-70" />
 
@@ -49,7 +53,7 @@ export function Hero() {
 
         {/* عنوان اصلی DERFIVE — تک‌خط، تایپوگرافی سیال با clamp بدون سرریز */}
         <div className="select-none w-full overflow-hidden">
-          <h1 className="text-[clamp(2.75rem,15vw,9rem)] font-black tracking-tighter leading-[0.9] whitespace-nowrap text-white drop-shadow-sm">
+          <h1 className="font-display text-[clamp(2.75rem,15vw,9rem)] font-black tracking-tighter leading-[0.9] whitespace-nowrap text-white drop-shadow-sm">
             {site.brand.toUpperCase()}
           </h1>
         </div>

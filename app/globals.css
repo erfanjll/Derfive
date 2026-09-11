@@ -19,13 +19,18 @@
   --color-signal: #c8f542;
   --color-signal-dim: #86a82a;
 
-  /* Purged the stretched/ultra-wide display font. Both tokens now resolve
-     to the same crisp, proportional sans stack so nothing on the site can
-     render distorted or overly wide again — even old font-display classes
-     left in untouched files fall back to this safely. */
-  --font-display: var(--font-manrope), GeistSans, ui-sans-serif, system-ui, sans-serif;
+  /* Site-wide display voice (Syne — loaded via --font-syne-src in layout.tsx).
+     Used ONLY on display headings; body copy keeps the proportional Manrope
+     stack. The --font-display token is separated from the body token on
+     purpose so headings get an editorial, kinetic identity of their own. */
+  --font-display: var(--font-syne-src), var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
   --font-body: var(--font-manrope), GeistSans, ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-jetbrains), ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* App background alias: the surface every page rests on. `bg-bg/95` in the
+     mobile drawer therefore tracks the theme instantly (ink in dark, cream in
+     light) because --color-bg resolves var(--color-ink) at use-site. */
+  --color-bg: var(--color-ink);
 
   /* Discipline voices mapped into the Tailwind theme — this generates the
      real `font-pixel` / `font-kinetic` utilities. NOTE: the literal mapping
@@ -479,16 +484,18 @@ html.light [data-nav-link][data-active="true"] {
   font-weight: 700;
 }
 
-/* The mobile drawer keeps its dark surface in light mode — its links must
-   stay light, so exempt them from the cream-mode link overrides above. */
+/* The mobile drawer follows the app theme tokens (bg-bg/text-ink), so in light
+   mode it flips to warm cream and its links must stay ink/olive — unlike the
+   desktop-scoped link overrides above, which target [data-nav-link] globally. */
 html.light #mobile-nav-drawer a {
-  color: #e5e7eb !important;
+  color: #22251e !important;
 }
 html.light #mobile-nav-drawer a:hover {
-  color: #f9fafb !important;
+  color: #4d7c0f !important;
 }
 html.light #mobile-nav-drawer a[data-active="true"] {
-  color: #bef264 !important;
+  color: #4d7c0f !important;
+  font-weight: 700;
 }
 
 /* Neon lime on cream is unreadable — darken text and border accents to olive. */

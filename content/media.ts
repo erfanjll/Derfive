@@ -31,28 +31,10 @@ export const media = {
       poster: "", // e.g. "/posters/game-demo.jpg"
       title: "Game development demo",
     },
-    animationDemo: {
-      src: "", // e.g. "/videos/animation-demo.mp4"
-      poster: "",
-      title: "Animation demo",
-    },
-    editingDemo: {
-      src: "", // e.g. "/videos/editing-demo.mp4"
-      poster: "",
-      title: "Editing demo",
-    },
-    motionExtra01: { src: "", poster: "", title: "Motion piece 01" },
-    motionExtra02: { src: "", poster: "", title: "Motion piece 02" },
   } satisfies Record<string, VideoAsset>,
 
   images: {
     portrait: { src: "", alt: "Portrait of Erfan Jalali" }, // e.g. "/images/portrait.jpg"
-    gameScreens: [
-      { src: "", alt: "Game screenshot 1" },
-      { src: "", alt: "Game screenshot 2" },
-      { src: "", alt: "Game screenshot 3" },
-      { src: "", alt: "Game screenshot 4" },
-    ] satisfies ImageAsset[],
     before: { src: "", alt: "Before editing" },
     after: { src: "", alt: "After editing" },
   },

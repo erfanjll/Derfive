@@ -10,43 +10,40 @@ export function Footer() {
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-6">
             <p className="label-mono mb-4">Erfan Jalali · {site.role}</p>
-            {/* Brand wordmark as real SVG outline text. The old CSS
-                -webkit-text-stroke approach clipped/overlapped the leg of the
-                "R"; a stroked <text> with strokeLinejoin="round" renders joins
-                cleanly, and textLength + lengthAdjust keep it fluid at every
-                viewport width (the SVG scales like a block element). */}
-            {/* The wordmark is now pure geometry: every letter is ONE
-                continuous monoline <path> — there are no glyph outlines, so
-                the R's bowl and leg can never intersect (the old stroked
-                <text> rendered Manrope's internal glyph contours, whose
-                overlapping outlines glitched the R at any weight/zoom).
-                Fully font-independent; viewBox 532x150. */}
+            {/* Brand wordmark — pure vector SVG geometry, NOT CSS -webkit-text-stroke.
+                Same viewBox as a golden-era arcade cabinet: 700x120. Every letter is
+                one continuous monoline <path>, so there are no glyph outlines to
+                self-intersect. The R's leg springs from the bowl's outer wall and
+                angles away down-right — it can never overlap or clip through the
+                loop at any resolution. vector-effect keeps the stroke width crisp
+                while the viewBox scales, and stroke-linejoin rounds every weld. */}
             <svg
-              viewBox="-4 0 532 150"
+              viewBox="0 0 700 120"
               role="img"
               aria-label={site.brand.toUpperCase()}
-              className="block h-auto w-full select-none text-line"
+              className="block h-auto w-full select-none text-mist"
               fill="none"
               stroke="currentColor"
               strokeWidth="11"
               strokeLinejoin="round"
               strokeLinecap="round"
+              paintOrder="stroke fill"
+              vectorEffect="non-scaling-stroke"
             >
-              {/* D — stem + top bar + right bowl + bottom bar, one loop */}
-              <path d="M 5 120 V 30 H 45 Q 75 30 75 75 Q 75 120 45 120 H 5 Z" />
-              {/* E — stem + top/mid/bottom bars */}
-              <path d="M 154 30 H 99 V 120 H 154 M 99 75 H 144" />
-              {/* R — stem + bowl + leg: the leg springs from the bowl's
-                     underside and angles away, never crossing it */}
-              <path d="M 183 120 V 30 M 183 30 H 218 Q 243 30 243 52.5 Q 243 75 218 75 H 183 M 216 75 L 243 120" />
-              {/* F */}
-              <path d="M 267 120 V 30 H 322 M 267 75 H 312" />
-              {/* I */}
-              <path d="M 346 30 V 120" />
-              {/* V */}
-              <path d="M 380 30 L 410 120 L 440 30" />
-              {/* E */}
-              <path d="M 519 30 H 464 V 120 H 519 M 464 75 H 509" />
+              {/* D — stem + top bar + rounded bowl + bottom bar */}
+              <path d="M 35.5 108 L 35.5 30 L 52.5 30 Q 98 30 98 54 Q 98 108 52 108 L 35.5 108 Z" />
+              {/* E — stem doubling as the left edge, with top / mid / bottom bars */}
+              <path d="M 196.5 30 L 149.5 30 L 149.5 108 L 196.5 108 M 149.5 69 L 188.5 69" />
+              {/* R — stem + bowl, then the leg leaves the bowl outward */}
+              <path d="M 247.5 108 L 247.5 30 L 264.5 30 Q 310 30 310 55 Q 310 108 264.5 108 L 247.5 108 M 304 90 L 316 108" />
+              {/* F — stem with top / mid bars */}
+              <path d="M 361.5 108 L 361.5 30 L 408.5 30 M 361.5 69 L 401.5 69" />
+              {/* I — stem */}
+              <path d="M 458 30 L 458 108" />
+              {/* V — apex */}
+              <path d="M 502 30 L 547 108 L 592 30" />
+              {/* E — stem doubling as the left edge, with top / mid / bottom bars */}
+              <path d="M 684.5 30 L 637.5 30 L 637.5 108 L 684.5 108 M 637.5 69 L 676.5 69" />
             </svg>
             <p className="mt-4 font-mono text-xs text-mist tracking-widest uppercase">{motto}</p>
           </div>

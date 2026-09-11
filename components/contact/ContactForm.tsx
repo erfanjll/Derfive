@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/Button";
 type Status = "idle" | "sending" | "sent" | "error" | "unconfigured";
 
 const field =
-  "w-full border-b border-line bg-transparent py-3 text-base text-bone placeholder:text-mist/60 transition-colors focus:border-signal focus:outline-none";
+  "w-full border border-line/40 bg-transparent px-4 py-3 text-base text-bone placeholder:text-mist/60 transition-colors focus:border-signal focus:ring-0 focus:outline-none";
 
 /**
  * Posts to /api/contact. Until CONTACT_WEBHOOK_URL is set (see .env.example)
@@ -49,16 +49,16 @@ export function ContactForm() {
     <form onSubmit={onSubmit} className="space-y-8" aria-describedby="form-status">
       <div className="grid gap-8 md:grid-cols-2">
         <div>
-          <label htmlFor="name" className="label-mono block">Name</label>
+          <label htmlFor="name" className="label-mono relative z-10 mb-3 block">Name</label>
           <input id="name" name="name" type="text" required autoComplete="name" placeholder="Your name" className={field} />
         </div>
         <div>
-          <label htmlFor="email" className="label-mono block">Email</label>
+          <label htmlFor="email" className="label-mono relative z-10 mb-3 block">Email</label>
           <input id="email" name="email" type="email" required autoComplete="email" placeholder="you@example.com" className={field} />
         </div>
       </div>
       <div>
-        <label htmlFor="message" className="label-mono block">Message</label>
+        <label htmlFor="message" className="label-mono relative z-10 mb-3 block">Message</label>
         <textarea id="message" name="message" required rows={5} placeholder="What are you building?" className={`${field} resize-none`} />
       </div>
 

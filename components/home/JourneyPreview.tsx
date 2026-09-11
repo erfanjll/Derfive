@@ -10,7 +10,7 @@ import { journeyBodiesFa } from "@/content/i18n";
 export function JourneyPreview() {
   return (
     <section className="wrap py-24 md:py-36" aria-labelledby="home-journey">
-      <SectionHeading index="04" eyebrow="Journey" title="Where this is going." />
+      <SectionHeading index="04" eyebrow="Journey" title="Where this is going." titleClassName="font-display" />
       <span id="home-journey" className="sr-only">Journey</span>
 
       <ol className="relative mt-16 grid gap-10 md:grid-cols-4 md:gap-8">

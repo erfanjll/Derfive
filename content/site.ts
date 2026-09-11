@@ -44,12 +44,12 @@ export const site = {
 
   // ▼ Paste the full link (starting with https://) between the quotes.
   //   Empty links are shown as "coming soon" and are not clickable.
+  // Discord was retired — only Telegram (@erfanjll) and Email are active.
   socials: [
     { label: "Telegram", href: "https://t.me/erfanjll" },
     { label: "GitHub", href: "" },
     { label: "Instagram", href: "" },
     { label: "LinkedIn", href: "" },
-    { label: "Discord", href: "" },
   ],
 };
 

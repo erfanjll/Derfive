@@ -1,0 +1,10 @@
+npm notice run derfive@1.0.0 build
+npm notice run next build
+   Downloading swc package @next/swc-win32-x64-msvc... to C:\Users\Erfan\AppData\Local\next-swc
+unhandledRejection [TypeError: terminated] {
+  [cause]: [Error: read ECONNRESET] {
+    errno: -4077,
+    code: 'ECONNRESET',
+    syscall: 'read'
+  }
+}
