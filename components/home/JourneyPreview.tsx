@@ -1,13 +1,19 @@
+"use client";
+
 import Link from "next/link";
 import { journey } from "@/content/journey";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
+import { useLanguage } from "@/context/LanguageContext";
+import { sections as dict } from "@/content/i18n";
 
 export function JourneyPreview() {
+  const { t } = useLanguage();
+
   return (
     <section className="wrap py-24 md:py-36" aria-labelledby="home-journey">
-      <SectionHeading index="04" eyebrow="Journey" title="Where this is going." />
-      <span id="home-journey" className="sr-only">Journey</span>
+      <SectionHeading index="04" eyebrow={t(dict.journey.eyebrow)} title={t(dict.journey.title)} />
+      <span id="home-journey" className="sr-only">{t(dict.journey.srLabel)}</span>
 
       <ol className="relative mt-16 grid gap-10 md:grid-cols-4 md:gap-8">
         <span aria-hidden className="absolute left-0 top-3 hidden h-px w-full bg-line md:block" />
@@ -24,7 +30,7 @@ export function JourneyPreview() {
 
       <Reveal className="mt-12">
         <Link href="/journey" className="group inline-flex items-center gap-3 font-mono text-xs uppercase tracking-[0.16em] text-signal">
-          Full timeline <span className="h-px w-10 bg-signal transition-all duration-500 group-hover:w-16" />
+          {t(dict.journey.cta)} <span className="h-px w-10 bg-signal transition-all duration-500 group-hover:w-16" />
         </Link>
       </Reveal>
     </section>

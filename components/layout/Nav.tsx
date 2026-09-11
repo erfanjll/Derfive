@@ -7,7 +7,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { site } from "@/content/site";
 import { EASE } from "@/lib/motion";
 import { useLanguage } from "@/context/LanguageContext";
-import { nav as navDict } from "@/content/i18n";
+import { nav as navDict, settings as settingsDict } from "@/content/i18n";
 
 const navKeyByHref: Record<string, keyof typeof navDict> = {
   "/about": "About",
@@ -23,13 +23,17 @@ export function Nav() {
   const { lang, t, toggleLang } = useLanguage();
   const [isLight, setIsLight] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const { theme, light, dark, language, toggleTheme: toggleThemeLabel, toggleLang: toggleLangLabel } = settingsDict;
 
   useEffect(() => {
+    // Re-sync from localStorage AND the live <html> class (which a
+    // pre-hydration bootstrap script may already have set). This keeps the
+    // toggle state correct on mobile, where a full page load is common.
     const saved = localStorage.getItem("derfive-theme");
-    if (saved === "light") {
-      setIsLight(true);
-      document.documentElement.classList.add("light");
-    }
+    const isCurrentlyLight = document.documentElement.classList.contains("light");
+    const next = saved === "light" || isCurrentlyLight;
+    document.documentElement.classList.toggle("light", next);
+    setIsLight(next);
   }, []);
 
   // Lock body scroll and clear the flag if the user resizes past the mobile breakpoint.
@@ -91,7 +95,7 @@ export function Nav() {
       <div className="flex items-center gap-3">
         <button
           onClick={toggleTheme}
-          aria-label="Toggle Theme"
+          aria-label={t(toggleThemeLabel)}
           className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-zinc-300 hover:text-lime-400 hover:border-lime-400 transition"
         >
           {isLight ? (
@@ -107,7 +111,7 @@ export function Nav() {
 
         <button
           onClick={toggleLang}
-          aria-label="Toggle Language"
+          aria-label={t(toggleLangLabel)}
           className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-[10px] font-mono font-semibold tracking-wide text-zinc-300 hover:text-lime-400 hover:border-lime-400 transition"
         >
           {lang === "en" ? "ENG" : "FA"}
@@ -195,14 +199,14 @@ export function Nav() {
                   onClick={toggleTheme}
                   className="flex items-center justify-between rounded-full border border-white/20 px-4 py-3 text-xs font-mono tracking-widest text-zinc-200"
                 >
-                  Theme
-                  <span className="text-lime-400">{isLight ? "Light" : "Dark"}</span>
+                  {t(theme)}
+                  <span className="text-lime-400">{isLight ? t(light) : t(dark)}</span>
                 </button>
                 <button
                   onClick={toggleLang}
                   className="flex items-center justify-between rounded-full border border-white/20 px-4 py-3 text-xs font-mono tracking-widest text-zinc-200"
                 >
-                  Language
+                  {t(language)}
                   <span className="text-lime-400">{lang === "en" ? "ENG" : "FA"}</span>
                 </button>
                 <Link

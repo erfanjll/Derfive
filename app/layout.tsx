@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Manrope, JetBrains_Mono } from "next/font/google";
+import { Manrope, JetBrains_Mono, Vazirmatn } from "next/font/google";
 import "./globals.css";
 import { site } from "@/content/site";
 import { cn } from "@/lib/cn";
@@ -11,6 +11,14 @@ import { Footer } from "@/components/layout/Footer";
 
 const manrope = Manrope({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"], variable: "--font-manrope", display: "swap" });
 const jetbrains = JetBrains_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-jetbrains", display: "swap" });
+const vazir = Vazirmatn({ subsets: ["arabic"], weight: ["400", "500", "600", "700", "800"], variable: "--font-vazir", display: "swap" });
+
+/**
+ * Runs BEFORE React hydrates / first paint: restores the persisted theme and
+ * language directly on <html>. Prevents the light-theme flash and any
+ * hydration mismatch around lang/dir/class attributes on mobile.
+ */
+const themeLangBootstrap = `(function(){try{var d=document.documentElement;var t=localStorage.getItem("derfive-theme");if(t==="light"){d.classList.add("light")}else{d.classList.remove("light")}var l=localStorage.getItem("derfive-lang");if(l==="fa"){d.lang="fa";d.dir="rtl"}else{d.lang="en";d.dir="ltr"}}catch(e){}})();`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -41,8 +49,9 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" dir="ltr" suppressHydrationWarning className={cn(manrope.variable, jetbrains.variable, "grain")}>
+    <html lang="en" dir="ltr" suppressHydrationWarning className={cn(manrope.variable, jetbrains.variable, vazir.variable, "grain")}>
       <body id="top" className="bg-ink text-bone antialiased">
+        <script dangerouslySetInnerHTML={{ __html: themeLangBootstrap }} />
         <Providers>
           <a
             href="#main"

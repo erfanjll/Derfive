@@ -51,6 +51,57 @@ export const buttons = {
   scrollToExplore: { en: "SCROLL TO EXPLORE ↓", fa: "برای کاوش اسکرول کنید ↓" },
 };
 
+/** Home-page section headings (GameSection / MotionSection / JourneyPreview / ContactCTA). */
+export const sections = {
+  games: {
+    eyebrow: { en: "Game development", fa: "توسعه بازی" },
+    title: { en: "Featured games.", fa: "بازی‌های شاخص." },
+    description: {
+      en: "Built at EMVP Studio, together with Mobin Kohi — and inside Shahid Beheshti University's Computer Engineering coursework. Systems programming meets technical art here.",
+      fa: "ساخته‌شده در استودیو EMVP همراه با مبین کوهی — و در قالب دروس مهندسی کامپیوتر دانشگاه شهید بهشتی. اینجا برنامه‌نویسی سیستمی با آرت فنی گره می‌خورد.",
+    },
+    srLabel: { en: "Game development", fa: "توسعه بازی" },
+  },
+  motion: {
+    eyebrow: { en: "Editing & animation", fa: "تدوین و انیمیشن" },
+    title: { en: "Featured motion.", fa: "موشن‌های شاخص." },
+    description: {
+      en: "Character animation, kinetic typography, cinematic editing, and motion graphics — playable right where they sit.",
+      fa: "انیمیشن کاراکتر، تایپوگرافی کینتیک، تدوین سینمایی و موشن گرافیک — همین‌جا و بدون خروج از صفحه قابل پخش است.",
+    },
+    srLabel: { en: "Editing and animation", fa: "تدوین و انیمیشن" },
+  },
+  journey: {
+    eyebrow: { en: "Journey", fa: "مسیر من" },
+    title: { en: "Where this is going.", fa: "این مسیر به کجا می‌رسد." },
+    cta: { en: "Full timeline", fa: "تایم‌لاین کامل" },
+    srLabel: { en: "Journey", fa: "مسیر من" },
+  },
+  contact: {
+    label: { en: "Contact", fa: "تماس" },
+    title: { en: "Let's make something.", fa: "بیا با هم چیزی بسازیم." },
+  },
+};
+
+/** Global footer strings. */
+export const footer = {
+  pages: { en: "Pages", fa: "صفحات" },
+  elsewhere: { en: "Elsewhere", fa: "شبکه‌های اجتماعی" },
+  builtNote: { en: "Built, not templated.", fa: "ساخته‌شده، نه کپی." },
+  soon: { en: "soon", fa: "به‌زودی" },
+  backToTop: { en: "Back to top ↑", fa: "بازگشت به بالا ↑" },
+};
+
+/** Nav controls (theme + language). */
+export const settings = {
+  theme: { en: "Theme", fa: "تم" },
+  light: { en: "Light", fa: "روشن" },
+  dark: { en: "Dark", fa: "تاریک" },
+  language: { en: "Language", fa: "زبان" },
+  toggleTheme: { en: "Toggle Theme", fa: "تغییر تم" },
+  toggleLang: { en: "Toggle Language", fa: "تغییر زبان" },
+};
+
 /** Project title / description overrides, keyed by the project's `slug`. */
 export const projectTranslations: Record<string, { title: { en: string; fa: string }; description?: { en: string; fa: string } }> = {
   "emvp-core-project": {

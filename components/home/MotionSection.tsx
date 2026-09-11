@@ -8,7 +8,7 @@ import { VideoPlayer } from "@/components/media/VideoPlayer";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { useLanguage } from "@/context/LanguageContext";
-import { buttons, projectTranslations } from "@/content/i18n";
+import { buttons, sections as dict, projectTranslations } from "@/content/i18n";
 
 /** Featured Motion — inline-playable previews of the four motion & video showcase pieces. */
 export function MotionSection() {
@@ -28,11 +28,11 @@ export function MotionSection() {
     <section ref={ref} className="ambient-glow wrap py-24 md:py-36" aria-labelledby="home-motion">
       <SectionHeading
         index="02"
-        eyebrow="Editing & animation"
-        title="Featured motion."
-        description="Character animation, kinetic typography, cinematic editing, and motion graphics — playable right where they sit."
+        eyebrow={t(dict.motion.eyebrow)}
+        title={t(dict.motion.title)}
+        description={t(dict.motion.description)}
       />
-      <span id="home-motion" className="sr-only">Editing and animation</span>
+      <span id="home-motion" className="sr-only">{t(dict.motion.srLabel)}</span>
 
       <div className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 md:gap-8">
         {clips.map((clip, i) => {

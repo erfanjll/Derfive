@@ -20,7 +20,7 @@ export const site = {
   // Facts that appear across the site. Keep them accurate. No date/year counters —
   // durations age badly, so this site describes scope and craft instead of a clock.
   facts: {
-    studio: "EMVP",
+    studio: "EMVP Studio",
     partner: "Mobin Kohi",
     university: "Shahid Beheshti University",
     program: "Computer Engineering",

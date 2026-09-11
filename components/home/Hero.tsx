@@ -16,7 +16,7 @@ export function Hero() {
   const { t } = useLanguage();
 
   return (
-    <section className="relative min-h-[92vh] w-full flex flex-col justify-center gap-8 overflow-hidden px-4 sm:px-8 md:px-12 pt-28 pb-10">
+    <section className="relative min-h-[86dvh] w-full flex flex-col justify-center gap-5 overflow-hidden px-4 sm:px-8 md:px-12 pt-24 pb-8">
       {/* هاله نوری پس‌زمینه — بدون لبه‌های چهارگوش */}
       <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-[500px] h-[500px] rounded-full bg-lime-400/10 blur-[140px] opacity-70" />
 
@@ -30,31 +30,34 @@ export function Hero() {
         <HeroCanvas />
       </motion.div>
 
-      <div className="flex flex-1 flex-col justify-center gap-8">
+      <div className="flex flex-1 flex-col justify-center gap-5">
         {/* نوار اطلاعات بالای هیرو — دقیقاً سه آیتم با تراز یکسان */}
-        <div className="w-full flex flex-row justify-between items-center text-[11px] md:text-xs font-mono tracking-wider border-b border-white/10 pb-4 gap-2">
+        <div className="w-full flex flex-row justify-between items-center text-[11px] md:text-xs font-mono tracking-wider border-b border-white/10 pb-3 gap-2">
           <span className="font-semibold text-white tracking-widest whitespace-nowrap">ERFAN JALALI</span>
           <span className="text-lime-400 font-mono tracking-widest whitespace-nowrap">{t(persona.studioBadge)}</span>
           <span className="hidden sm:inline text-zinc-400 whitespace-nowrap">{t(persona.university)}</span>
         </div>
 
         {/* معرفی + موتو */}
-        <div className="max-w-xl space-y-3">
+        <div className="max-w-xl space-y-2">
           <p className="text-base sm:text-lg md:text-xl text-zinc-300 font-normal leading-relaxed">
             {t(persona.bio)}
           </p>
           <p className="font-mono text-xs text-mist tracking-widest uppercase">{t(motto)}</p>
         </div>
 
-        {/* عنوان اصلی DERFIVE — تک‌خط، بدون شکستگی */}
-        <div className="select-none">
-          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-[10rem] font-black tracking-tighter leading-none whitespace-nowrap text-white drop-shadow-sm">
+        {/* عنوان اصلی DERFIVE — تک‌خط، تایپوگرافی سیال با clamp بدون سرریز */}
+        <div className="select-none w-full overflow-hidden">
+          <h1
+            data-latin
+            className="text-[clamp(2.75rem,16.5vw,10rem)] font-black tracking-tighter leading-[0.9] whitespace-nowrap text-white drop-shadow-sm"
+          >
             {site.brand.toUpperCase()}
           </h1>
         </div>
 
         {/* کلیدهای اقدام */}
-        <div className="w-full flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-white/10">
+        <div className="w-full flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-white/10">
           <div className="flex items-center gap-3">
             <Link
               href="/projects"

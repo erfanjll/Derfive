@@ -1,13 +1,12 @@
 "use client";
 
 import { getProjectsByCategory } from "@/content/projects";
-import { site } from "@/content/site";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
 import { ProjectCard } from "@/components/projects/ProjectCard";
 import { useLanguage } from "@/context/LanguageContext";
-import { buttons } from "@/content/i18n";
+import { buttons, sections as dict } from "@/content/i18n";
 
 /** Featured Games — the two game-development project cards, full stop. */
 export function GameSection() {
@@ -22,11 +21,11 @@ export function GameSection() {
       <div className="wrap">
         <SectionHeading
           index="01"
-          eyebrow="Game development"
-          title="Featured games."
-          description={`Built at ${site.facts.studio}, together with ${site.facts.partner} — and inside Shahid Beheshti University's Computer Engineering coursework. Systems programming meets technical art here.`}
+          eyebrow={t(dict.games.eyebrow)}
+          title={t(dict.games.title)}
+          description={t(dict.games.description)}
         />
-        <span id="home-games" className="sr-only">Game development</span>
+        <span id="home-games" className="sr-only">{t(dict.games.srLabel)}</span>
 
         <div className="mt-16 grid gap-10 md:grid-cols-2 md:gap-8">
           {games.map((p, i) => (

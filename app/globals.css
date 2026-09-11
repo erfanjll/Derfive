@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+/* The app toggles themes with an html.light class (see Nav.tsx), so the
+   `dark:` variant must follow that class — not the OS prefers-color-scheme.
+   Without this, phones whose system theme is LIGHT never apply `dark:*`
+   utilities (e.g. nav links went dark-on-dark). */
+@custom-variant dark (&:where(html:not(.light) *));
+
 /* ---------- Design tokens ---------- */
 @theme {
   --color-ink: #050505;
@@ -43,6 +49,12 @@ body {
   width: 100%;
   overflow-x: clip;
   font-feature-settings: "ss01", "cv11";
+}
+
+/* Belt-and-braces: nothing inside the page container may push the mobile
+   viewport sideways. `clip` (unlike `hidden`) creates no scroll container. */
+main {
+  overflow-x: clip;
 }
 
 /* Any SVG title/logo strokes render fill under stroke so joins (e.g. the leg
@@ -299,22 +311,61 @@ html.nav-open body {
   overflow: hidden;
 }
 
-/* ---------- Custom Portfolio Scrollbar ---------- */
+/* ---------- Persian (FA) mode ----------
+   The LanguageContext flips <html lang="fa" dir="rtl"> after mount (and a
+   pre-hydration script applies it before first paint). Here we swap the
+   display/body/mono font stacks to Vazirmatn and neutralise letter-spacing,
+   which must never be applied to connected Arabic script. */
+html[lang="fa"] {
+  --font-display: var(--font-vazir), Tahoma, "Segoe UI", sans-serif;
+  --font-body: var(--font-vazir), Tahoma, "Segoe UI", sans-serif;
+  --font-mono: var(--font-vazir), Tahoma, monospace;
+}
+
+html[lang="fa"] body {
+  font-family: var(--font-vazir), Tahoma, sans-serif;
+}
+
+html[lang="fa"] body,
+html[lang="fa"] h1,
+html[lang="fa"] h2,
+html[lang="fa"] h3,
+html[lang="fa"] h4,
+html[lang="fa"] p,
+html[lang="fa"] a,
+html[lang="fa"] button,
+html[lang="fa"] span,
+html[lang="fa"] li,
+html[lang="fa"] input,
+html[lang="fa"] textarea {
+  letter-spacing: 0 !important;
+  word-spacing: normal;
+}
+
+/* Keep the giant brand title Latin even in FA mode — "DERFIVE" is a wordmark. */
+html[lang="fa"] [data-latin] {
+  font-family: var(--font-manrope), GeistSans, ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ---------- Custom Portfolio Scrollbar (neon-lime) ---------- */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
 }
 ::-webkit-scrollbar-track {
   background: var(--color-ink);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-line);
+  background: linear-gradient(var(--color-signal), var(--color-signal-dim));
   border-radius: 9999px;
-  transition: background 0.2s ease;
+  border: 2px solid var(--color-ink);
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-signal);
 }
 * {
   scrollbar-width: thin;
-  scrollbar-color: var(--color-line) var(--color-ink);
+  scrollbar-color: var(--color-signal-dim) var(--color-ink);
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--color-signal);
 }
