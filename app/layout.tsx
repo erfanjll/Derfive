@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Manrope, JetBrains_Mono, Vazirmatn, Syne, Share_Tech_Mono, Space_Grotesk } from "next/font/google";
+import { Manrope, JetBrains_Mono, Vazirmatn, Syne, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { site } from "@/content/site";
 import { cn } from "@/lib/cn";
@@ -17,7 +17,12 @@ const vazir = Vazirmatn({ subsets: ["arabic"], weight: ["400", "500", "600", "70
 const syne = Syne({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"], variable: "--font-syne-src", display: "swap" });
 // Tech-monospace voice for game engine telemetry / CAD schematics:
 // sharp, high-tech, architectural — not chunky 8-bit arcade.
-const tech = Share_Tech_Mono({ subsets: ["latin"], weight: ["400", "700"], variable: "--font-tech-src", display: "swap" });
+const shareTechMono = Share_Tech_Mono({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-pixel',
+  display: 'swap',
+});
 const kinetic = Space_Grotesk({ subsets: ["latin"], weight: ["300", "400", "500", "600", "700"], variable: "--font-kinetic-src", display: "swap" });
 
 /**
@@ -57,7 +62,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" dir="ltr" suppressHydrationWarning className={cn(manrope.variable, jetbrains.variable, vazir.variable, syne.variable, tech.variable, kinetic.variable, "grain")}>
+    <html lang="en" dir="ltr" suppressHydrationWarning className={cn(manrope.variable, jetbrains.variable, vazir.variable, syne.variable, shareTechMono.variable, kinetic.variable, "grain")}>
       <body id="top" className="bg-ink text-bone antialiased">
         <script dangerouslySetInnerHTML={{ __html: themeBootstrap }} />
         <Providers>
