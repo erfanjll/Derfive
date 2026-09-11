@@ -10,7 +10,6 @@ export const about = {
 
   paragraphs: [
     "I'm Erfan Jalali. I build games at EMVP together with Mobin Kohi, where the interesting part is rarely the first idea and almost always the iteration that follows it.",
-    "I'm studying Computer Engineering at Shahid Beheshti University. Coursework in systems, algorithms, and architecture during the day; engine and gameplay code at night — the two feed each other more than expected.",
     "Alongside programming, I work in motion graphics and cinematic editing. Treating engine systems and motion design as one discipline instead of two is what I mean by 'Technical Artist.'",
   ],
 

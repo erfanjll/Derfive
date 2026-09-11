@@ -22,6 +22,7 @@ export function GameSection() {
           eyebrow="Game development"
           eyebrowClassName="font-pixel"
           title="Featured games."
+          titleClassName="font-pixel"
           description={gamesSectionDescription}
         />
         <span id="home-games" className="sr-only">Game development</span>

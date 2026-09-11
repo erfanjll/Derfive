@@ -58,7 +58,7 @@ export default function EditingAnimationPage() {
       {/* Showcase grid */}
       <section className="border-y border-line bg-coal py-24 md:py-36" aria-labelledby="reel-title">
         <div className="wrap">
-          <SectionHeading index="01" eyebrow="Showcase" title="Clips." description={motionPageCopy.showcaseDescription} eyebrowClassName="font-kinetic" />
+          <SectionHeading index="01" eyebrow="Showcase" title="Clips." description={motionPageCopy.showcaseDescription} eyebrowClassName="font-kinetic" titleClassName="font-kinetic" />
           <span id="reel-title" className="sr-only">Showcase</span>
           <div className="mt-14 grid gap-6 md:grid-cols-12 md:gap-8">
             <Reveal className="md:col-span-8">
@@ -79,7 +79,7 @@ export default function EditingAnimationPage() {
 
       {/* Before / after */}
       <section className="wrap py-24 md:py-36" aria-labelledby="ba-title">
-        <SectionHeading index="02" eyebrow="Editing" title="Before / after." description={motionPageCopy.beforeAfterDescription} eyebrowClassName="font-kinetic" />
+        <SectionHeading index="02" eyebrow="Editing" title="Before / after." description={motionPageCopy.beforeAfterDescription} eyebrowClassName="font-kinetic" titleClassName="font-kinetic" />
         <span id="ba-title" className="sr-only">Before and after comparison</span>
         <Reveal className="mt-14">
           <BeforeAfter before={media.images.before} after={media.images.after} />

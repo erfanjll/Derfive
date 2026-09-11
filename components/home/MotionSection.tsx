@@ -23,12 +23,13 @@ export function MotionSection() {
   const clips = getProjectsByCategory("animation", "editing");
 
   return (
-    <section ref={ref} className="ambient-glow wrap py-24 md:py-36" aria-labelledby="home-motion">
+    <section ref={ref} className="wrap py-24 md:py-36" aria-labelledby="home-motion">
       <SectionHeading
         index="02"
         eyebrow="Editing & animation"
         eyebrowClassName="font-kinetic"
         title="Featured motion."
+        titleClassName="font-kinetic"
         description={motionSectionDescription}
       />
       <span id="home-motion" className="sr-only">Editing and animation</span>
