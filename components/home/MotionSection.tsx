@@ -50,7 +50,7 @@ export function MotionSection() {
               label={clip.subCategory ?? clip.title}
               index={`0${i + 1}`}
             />
-            <p className="mt-3 font-body text-sm font-bold tracking-tight text-bone">{clip.title}</p>
+            <p className="mt-3 px-3 flex items-center justify-between font-body text-sm font-bold tracking-tight text-bone">{clip.title}</p>
           </motion.div>
         ))}
       </div>

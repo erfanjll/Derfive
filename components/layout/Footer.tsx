@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { site } from "@/content/site";
-import { motto } from "@/content/i18n";
 
 export function Footer() {
 
@@ -10,7 +9,6 @@ export function Footer() {
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-6">
             <p className="label-mono mb-4">Erfan Jalali · {site.role}</p>
-            <p className="mt-4 font-mono text-xs text-mist tracking-widest uppercase">{motto}</p>
           </div>
 
           <nav aria-label="Footer" className="md:col-span-3">
@@ -57,30 +55,25 @@ export function Footer() {
         </div>
       </div>
 
-      {/* Monumental hollow wordmark — edge-to-edge vector outline. The only fill
-          is `fill="none"`: every letter is pure stroke, so the text is 100%
-          hollow and reads as a gigantic architectural plate across the footer. */}
-      <div aria-hidden className="px-2 pb-4 sm:px-4">
-        <svg
-          viewBox="0 0 1200 220"
-          role="img"
-          aria-label={site.brand.toUpperCase()}
-          className="w-full h-auto select-none pointer-events-none overflow-visible text-white/20 hover:text-signal/40 transition-colors"
+      {/* Bottom showcase — centered 3-tier lockup: identity line, hollow
+          DERFIVE wordmark (pure CSS stroke, no SVG miter artifacts), motto. */}
+      <div className="w-full max-w-7xl mx-auto px-4 py-12 flex flex-col items-center justify-center text-center overflow-hidden">
+        <p className="font-mono text-xs sm:text-sm tracking-widest text-muted uppercase mb-2">
+          Erfan Jalali · Technical Artist &amp; Game Developer
+        </p>
+        <h2
+          className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-wider uppercase select-none my-2 hover:[-webkit-text-stroke-color:var(--color-signal)] transition-all duration-300"
+          style={{
+            WebkitTextStroke: "1.5px rgba(255, 255, 255, 0.25)",
+            color: "transparent",
+            fontFamily: "var(--font-syne-src), sans-serif",
+          }}
         >
-          <text
-            x="50%"
-            y="60%"
-            textAnchor="middle"
-            dominantBaseline="middle"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.5"
-            className="font-extrabold tracking-tighter"
-            style={{ fontFamily: 'var(--font-syne-src), sans-serif', fontSize: '180px', letterSpacing: '0.08em' }}
-          >
-            DERFIVE
-          </text>
-        </svg>
+          DERFIVE
+        </h2>
+        <p className="font-mono text-[11px] sm:text-xs tracking-wider text-muted/70 mt-2">
+          Built with bugs, fixed with love.
+        </p>
       </div>
     </footer>
   );
