@@ -57,6 +57,11 @@ export const journeyBodiesFa: Record<string, string> = {
 };
 
 /* ---------- About page ---------- */
+export const aboutIntro: Bilingual = {
+  en: "Technical Artist & Game Developer studying Computer Engineering at Shahid Beheshti University — bridging engine systems programming with cinematic motion design.",
+  fa: "تکنیکال آرتیست و بازی‌ساز، دانشجوی مهندسی کامپیوتر دانشگاه شهید بهشتی — پیوند برنامه‌نویسی سیستم‌های انجین با طراحی سینمایی موشن.",
+};
+
 export const aboutParagraphsFa: string[] = [
   "من عرفان جلالی هستم. در EMVP همراه با مبین کوهی بازی می‌سازم؛ جایی که بخش جالب ماجرا به‌ندرت ایده اول است و تقریباً همیشه تکراری است که بعد از آن می‌آید.",
   "در کنار برنامه‌نویسی، در موشن گرافیک و تدوین سینمایی کار می‌کنم. دیدن سیستم‌های انجین و طراحی موشن به‌عنوان یک رشته به‌جای دو رشته، یعنی همان چیزی که من از «آرتیست فنی» می‌فهمم.",

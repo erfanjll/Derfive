@@ -5,7 +5,7 @@ import { TextReveal } from "@/components/ui/TextReveal";
 import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
 import { TText } from "@/components/ui/TText";
-import { aboutParagraphsFa, aboutPrinciplesFa } from "@/content/i18n";
+import { aboutIntro, aboutParagraphsFa, aboutPrinciplesFa } from "@/content/i18n";
 
 export const metadata = pageMeta({
   title: "About",
@@ -25,8 +25,14 @@ export default function AboutPage() {
         <TextReveal
           as="h1"
           immediate
-          text={about.intro}
-          className="font-display text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black leading-tight tracking-tight text-bone"
+          text="About"
+          className="font-display text-3xl sm:text-4xl md:text-5xl font-black leading-tight tracking-tight text-bone"
+        />
+        <TText
+          en={about.intro}
+          fa={aboutIntro.fa}
+          as="div"
+          className="font-body text-base sm:text-lg md:text-xl text-bone/90 font-normal leading-relaxed max-w-3xl my-6"
         />
       </section>
 

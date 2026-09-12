@@ -27,7 +27,7 @@ export default function JourneyPage() {
       </section>
 
       <section className="wrap pb-24 md:pb-36" aria-label="Timeline">
-        <div className="relative overflow-hidden">
+        <div className="relative overflow-visible">
           <SpotlightBackdrop />
           <div className="relative">
             <Timeline />

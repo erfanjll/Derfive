@@ -19,23 +19,23 @@ export function Timeline() {
   const progress = useSpring(scrollYProgress, { stiffness: 90, damping: 26, mass: 0.4 });
 
   return (
-    <ol ref={ref} className="relative">
+    <ol ref={ref} className="relative overflow-visible pl-6 sm:pl-8 md:pl-0">
       {/* Track + animated fill */}
-      <span aria-hidden className="absolute left-[7px] top-0 h-full w-px bg-line md:left-1/2" />
+      <span aria-hidden className="absolute left-5 top-0 h-full w-px bg-line sm:left-8 md:left-1/2" />
       <motion.span
         aria-hidden
-        className="absolute left-[7px] top-0 h-full w-px origin-top bg-signal md:left-1/2"
+        className="absolute left-5 top-0 h-full w-px origin-top bg-signal sm:left-8 md:left-1/2"
         style={{ scaleY: reduce ? 1 : progress }}
       />
 
       {journey.map((stage, i) => {
         const left = i % 2 === 0;
         return (
-          <li key={stage.id} className="relative grid gap-4 py-14 pl-10 md:grid-cols-2 md:gap-x-24 md:py-24 md:pl-0">
-            {/* Node */}
+          <li key={stage.id} className="relative grid gap-4 py-14 pl-10 sm:pl-12 md:grid-cols-2 md:gap-x-24 md:py-24 md:pl-0">
+            {/* Node — centered on the line, rotated corners never clipped */}
             <motion.span
               aria-hidden
-              className="absolute left-0 top-[3.6rem] h-[15px] w-[15px] rotate-45 border border-line bg-ink md:left-1/2 md:top-[6.2rem] md:-translate-x-1/2"
+              className="absolute left-5 top-[3.6rem] h-[15px] w-[15px] -translate-x-1/2 rotate-45 border border-line bg-ink sm:left-8 md:left-1/2 md:top-[6.2rem]"
               initial={false}
               whileInView={reduce ? undefined : { borderColor: "#c8f542", backgroundColor: "#c8f542" }}
               viewport={{ once: true, margin: "-45% 0px -45% 0px" }}
