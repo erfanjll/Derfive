@@ -10,41 +10,6 @@ export function Footer() {
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-6">
             <p className="label-mono mb-4">Erfan Jalali · {site.role}</p>
-            {/* Brand wordmark — pure vector SVG geometry, NOT CSS -webkit-text-stroke.
-                Same viewBox as a golden-era arcade cabinet: 700x120. Every letter is
-                one continuous monoline <path>, so there are no glyph outlines to
-                self-intersect. The R's leg springs from the bowl's outer wall and
-                angles away down-right — it can never overlap or clip through the
-                loop at any resolution. vector-effect keeps the stroke width crisp
-                while the viewBox scales, and stroke-linejoin rounds every weld. */}
-            <svg
-              viewBox="0 0 700 120"
-              role="img"
-              aria-label={site.brand.toUpperCase()}
-              className="block h-auto w-full select-none text-mist"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="11"
-              strokeLinejoin="round"
-              strokeLinecap="round"
-              paintOrder="stroke fill"
-              vectorEffect="non-scaling-stroke"
-            >
-              {/* D — stem + top bar + rounded bowl + bottom bar */}
-              <path d="M 35.5 108 L 35.5 30 L 52.5 30 Q 98 30 98 54 Q 98 108 52 108 L 35.5 108 Z" />
-              {/* E — stem doubling as the left edge, with top / mid / bottom bars */}
-              <path d="M 196.5 30 L 149.5 30 L 149.5 108 L 196.5 108 M 149.5 69 L 188.5 69" />
-              {/* R — stem + bowl, then the leg leaves the bowl outward */}
-              <path d="M 247.5 108 L 247.5 30 L 264.5 30 Q 310 30 310 55 Q 310 108 264.5 108 L 247.5 108 M 304 90 L 316 108" />
-              {/* F — stem with top / mid bars */}
-              <path d="M 361.5 108 L 361.5 30 L 408.5 30 M 361.5 69 L 401.5 69" />
-              {/* I — stem */}
-              <path d="M 458 30 L 458 108" />
-              {/* V — apex */}
-              <path d="M 502 30 L 547 108 L 592 30" />
-              {/* E — stem doubling as the left edge, with top / mid / bottom bars */}
-              <path d="M 684.5 30 L 637.5 30 L 637.5 108 L 684.5 108 M 637.5 69 L 676.5 69" />
-            </svg>
             <p className="mt-4 font-mono text-xs text-mist tracking-widest uppercase">{motto}</p>
           </div>
 
@@ -90,6 +55,32 @@ export function Footer() {
             Back to top ↑
           </a>
         </div>
+      </div>
+
+      {/* Monumental hollow wordmark — edge-to-edge vector outline. The only fill
+          is `fill="none"`: every letter is pure stroke, so the text is 100%
+          hollow and reads as a gigantic architectural plate across the footer. */}
+      <div aria-hidden className="px-2 pb-4 sm:px-4">
+        <svg
+          viewBox="0 0 1200 220"
+          role="img"
+          aria-label={site.brand.toUpperCase()}
+          className="w-full h-auto select-none pointer-events-none overflow-visible text-white/20 hover:text-signal/40 transition-colors"
+        >
+          <text
+            x="50%"
+            y="60%"
+            textAnchor="middle"
+            dominantBaseline="middle"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            className="font-extrabold tracking-tighter"
+            style={{ fontFamily: 'var(--font-syne-src), sans-serif', fontSize: '180px', letterSpacing: '0.08em' }}
+          >
+            DERFIVE
+          </text>
+        </svg>
       </div>
     </footer>
   );

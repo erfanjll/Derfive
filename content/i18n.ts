@@ -139,8 +139,8 @@ export const projectDescriptions: Record<string, Bilingual> = {
     fa: "بازی ایندی مشترک با تمرکز بر مکانیک‌های حرکتی بیانگر، پاسخ‌دهی دقیق به ورودی و تعاملات فیزیک بلادرنگ اختصاصی (همکاری با مبین کوهی).",
   },
   "sbu-ap-architecture-engine": {
-    en: "Robust academic software engine implementing strict design patterns, concurrent state loops, and responsive UI components.",
-    fa: "انجین نرم‌افزاری دانشگاهی مستحکم با پیاده‌سازی الگوهای طراحی دقیق، حلقه‌های وضعیت هم‌زمان و رابط کاربری واکنش‌گرا.",
+    en: "A 2D top-down 2-player pixel-art action-adventure game built with custom architecture, responsive input, and tight physics loops.",
+    fa: "بازی دو بعدی تاپ دان دو نفره پیکسلی اکشن ادونچر با معماری شی‌گرا و فیزیک اختصاصی",
   },
   "micro-narrative-15s-short": {
     en: "Stylized keyframe character animation focusing on comedic staging, secondary motion, and expressive timing.",

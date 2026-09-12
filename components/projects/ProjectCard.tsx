@@ -31,9 +31,9 @@ export function ProjectCard({ project, index, size = "regular" }: ProjectCardPro
       viewport={{ once: true, margin: "-8% 0px" }}
       transition={{ duration: 0.8, ease: EASE }}
       whileHover={{ y: -4 }}
-      className="group rounded-sm border border-line/40 bg-graphite/40 p-3 transition-colors duration-300 hover:border-signal/30 md:p-4 [transform:translate3d(0,0,0)] [will-change:transform]"
+      className="group overflow-hidden rounded-sm border border-line/40 bg-graphite/40 p-3 transition-colors duration-300 hover:border-signal/30 md:p-4 [transform:translate3d(0,0,0)] [will-change:transform]"
     >
-      <Link href={`/projects/${project.slug}`} className="block" data-cursor="view" aria-label={`${project.title} — ${label}`}>
+      <Link href={`/projects/${project.slug}`} className="block min-w-0" data-cursor="view" aria-label={`${project.title} — ${label}`}>
         <div className="glow-border relative overflow-hidden rounded-sm border border-transparent">
           {project.video ? (
             <VideoPlayer src={project.video} poster={project.poster} title={project.title} aspect={aspect} ambient />
@@ -46,16 +46,16 @@ export function ProjectCard({ project, index, size = "regular" }: ProjectCardPro
           <span aria-hidden className="pointer-events-none absolute inset-0 border border-signal opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
         </div>
 
-        <div className="mt-4 flex items-start justify-between gap-6">
-          <div>
-            <h3 className={cn("font-body font-black tracking-tight text-bone transition-colors group-hover:text-signal", size === "large" ? "text-2xl md:text-4xl" : "text-xl md:text-2xl")}>
+        <div className="mt-4 flex flex-wrap items-start justify-between gap-x-6 gap-y-3 min-w-0">
+          <div className="min-w-0 flex-1 basis-64">
+            <h3 className={cn("break-words font-body font-black tracking-tight text-bone transition-colors group-hover:text-signal", size === "large" ? "text-2xl md:text-4xl" : "text-xl md:text-2xl")}>
               {project.title}
             </h3>
-            <TText en={description.en} fa={description.fa} className="mt-2 max-w-md text-sm leading-relaxed text-mist" />
+            <TText en={description.en} fa={description.fa} className="mt-2 max-w-md break-words text-sm leading-relaxed text-mist" />
           </div>
-          <div className="shrink-0 text-right font-mono text-[11px] uppercase tracking-[0.14em] text-mist">
-            <p data-discipline={project.category === "game" ? "game" : "motion"}>{label}</p>
-            <p className="mt-1 opacity-80">{project.subCategory ?? project.role ?? "—"}</p>
+          <div className="flex flex-wrap gap-2 min-w-0 max-w-full text-right font-mono text-[11px] uppercase tracking-[0.14em] text-mist">
+            <p data-discipline={project.category === "game" ? "game" : "motion"} className="truncate">{label}</p>
+            <p className="mt-1 break-words opacity-80">{project.subCategory ?? project.role ?? "—"}</p>
           </div>
         </div>
       </Link>

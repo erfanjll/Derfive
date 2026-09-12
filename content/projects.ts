@@ -42,12 +42,12 @@ export const projects: Project[] = [
     // thumbnail: "/images/projects/emvp-core-project/cover.jpg",
   },
   {
-    title: "SBU AP Architecture & Engine",
+    title: "SBU AP Project",
     slug: "sbu-ap-architecture-engine",
     category: "game",
     subCategory: "Advanced Programming (AP) Project",
     description:
-      "Robust academic software engine implementing strict design patterns, concurrent state loops, and responsive UI components.",
+      "A 2D top-down 2-player pixel-art action-adventure game built with custom architecture, responsive input, and tight physics loops.",
     team: "Shahid Beheshti University (Computer Engineering)",
     role: "Lead Systems Architect & Logic Programmer",
     technologies: ["Java / C#", "OOP Architecture", "Multithreaded State Loops", "Custom UI"],

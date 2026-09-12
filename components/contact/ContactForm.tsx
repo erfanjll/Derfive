@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/Button";
 type Status = "idle" | "sending" | "sent" | "error" | "unconfigured";
 
 const field =
-  "w-full border border-line/40 bg-transparent px-4 py-3 text-base text-bone placeholder:text-mist/60 transition-colors focus:border-signal focus:ring-0 focus:outline-none";
+  "w-full max-w-full box-border min-w-0 border border-line/40 bg-transparent px-4 py-3 text-base text-bone placeholder:text-mist/60 transition-colors focus:border-signal focus:ring-0 focus:outline-none";
 
 /**
  * Posts to /api/contact. Until CONTACT_WEBHOOK_URL is set (see .env.example)
@@ -46,8 +46,8 @@ export function ContactForm() {
   };
 
   return (
-    <form onSubmit={onSubmit} className="space-y-8" aria-describedby="form-status">
-      <div className="grid gap-8 md:grid-cols-2">
+    <form onSubmit={onSubmit} className="w-full max-w-full box-border space-y-8" aria-describedby="form-status">
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
         <div>
           <label htmlFor="name" className="label-mono relative z-10 mb-3 block">Name</label>
           <input id="name" name="name" type="text" required autoComplete="name" placeholder="Your name" className={field} />
@@ -68,7 +68,7 @@ export function ContactForm() {
         <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />
       </div>
 
-      <div className="flex flex-wrap items-center gap-6">
+      <div className="flex flex-wrap items-center gap-6 max-w-full">
         <Button type="submit" disabled={status === "sending"} magnetic>
           {status === "sending" ? "Sending" : "Send message"}
         </Button>

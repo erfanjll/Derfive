@@ -20,7 +20,7 @@ export default function ContactPage() {
     <section className="relative overflow-hidden pb-28 pt-32 md:pb-40 md:pt-44">
       <ContactBackdrop />
 
-      <div className="wrap relative">
+      <div className="w-full max-w-full px-4 sm:px-6 box-border overflow-x-hidden relative">
         <p className="label-mono mb-8">
           <span className="text-signal">06</span> — Contact
         </p>
@@ -28,10 +28,10 @@ export default function ContactPage() {
           as="h1"
           immediate
           text="Say hi."
-          className="font-display text-[clamp(4rem,16vw,16rem)] font-extrabold leading-[0.82] tracking-[-0.06em] text-bone"
+          className="font-display text-[clamp(4rem,16vw,16rem)] font-extrabold leading-[0.82] tracking-[-0.06em] text-bone break-words"
         />
 
-        <div className="mt-16 grid gap-16 md:mt-24 md:grid-cols-12">
+        <div className="mt-16 grid grid-cols-1 gap-16 md:mt-24 md:grid-cols-12">
           {/* Direct channels */}
           <div className="space-y-12 md:col-span-5">
             <Reveal delay={0.2}>
@@ -79,8 +79,8 @@ export default function ContactPage() {
           </div>
 
           {/* Form */}
-          <Reveal delay={0.3} className="md:col-span-6 md:col-start-7">
-            <div className="rounded-sm border border-line bg-coal/80 p-7 backdrop-blur-sm md:p-10">
+          <Reveal delay={0.3} className="w-full max-w-full box-border min-w-0 md:col-span-6 md:col-start-7">
+            <div className="w-full max-w-full box-border overflow-hidden rounded-sm border border-line bg-coal/80 p-4 sm:p-7 backdrop-blur-sm md:p-10">
               <p className="label-mono mb-8">Or write here</p>
               <ContactForm />
             </div>
